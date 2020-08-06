@@ -1,0 +1,5 @@
+/.idea/
+/target/
+/guardhat-automation-tests.iml
+/src/main/resources/drivers/
+/allure-results
