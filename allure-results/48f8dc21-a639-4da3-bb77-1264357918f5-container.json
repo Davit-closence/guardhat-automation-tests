@@ -1,0 +1,1 @@
+{"uuid":"48f8dc21-a639-4da3-bb77-1264357918f5","name":"rest_api.LoginAPI","children":["dea04de3-38cd-486e-8f1b-a6bc83eaaf5e"],"befores":[{"name":"setupAPI","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1594842162678,"stop":1594842163060}],"afters":[],"links":[],"start":1594842162663,"stop":1594842173860}

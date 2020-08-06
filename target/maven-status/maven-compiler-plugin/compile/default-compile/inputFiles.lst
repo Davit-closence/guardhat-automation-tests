@@ -1,0 +1,9 @@
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/general_setup/telegram/TelegramGroupSender.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/guardhat_ui/administration/UserManagerPage.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/general_setup/listeners/Retry.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/general_setup/listeners/RetryListener.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/guardhat_ui/LoginPage.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/general_setup/listeners/SuiteListener.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/general_setup/DriverHelper.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/general_setup/BasePage.java
+/Users/davit/Desktop/guardhat-automation-tests/src/main/java/general_setup/WaitHelper.java
