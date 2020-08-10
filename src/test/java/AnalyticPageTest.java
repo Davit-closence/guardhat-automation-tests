@@ -17,6 +17,16 @@ public class AnalyticPageTest extends BaseTest{
     }
 
     @Test
+    public void verifyOverViewChartSection() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard("davit", "guardhat2020");
+        analyticPage.selectAnalyticBtn();
+        Assert.assertTrue(analyticPage.isDisplayedFirstChart(),"First Chart is not displayed");
+        Assert.assertTrue(analyticPage.isDisplayedSecondChart(),"Second Chart is not displayed");
+    }
+
+    @Test
     public void verifyOverViewDevicePowerOnOption() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
@@ -61,6 +71,21 @@ public class AnalyticPageTest extends BaseTest{
         analyticPage.selectAnalyticBtn();
         analyticPage.selectKpiReport();
         Assert.assertTrue(analyticPage.isDisplayedNonCriticalEventsNumber(),"Non Critical Numbers is not displayed");
+    }
+
+    @Test
+    public void verifyKpiReportChangeSiteFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard("davit", "guardhat2020");
+        analyticPage.selectAnalyticBtn();
+        analyticPage.selectKpiReport();
+        analyticPage.getCriticalNumberTextBefore();
+        analyticPage.selectSiteDropDown();
+        analyticPage.selectSiteOption("CAT_Ranch_2");
+        analyticPage.selectSubmitBtn();
+        analyticPage.getCriticalNumberTextAfter();
+        Assert.assertNotEquals(analyticPage.criticalNumberTextBefore,analyticPage.criticalNumberTextAfter,"The critical number is equal");
     }
 
     @Test

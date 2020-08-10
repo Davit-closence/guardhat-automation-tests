@@ -120,6 +120,20 @@ public class AnalyticPage extends BasePage {
         return isDisplayed(criticalEventsNumber);
     }
 
+    public String criticalNumberTextBefore;
+
+    public String getCriticalNumberTextBefore() {
+        driverSleep(1000);
+        return this.criticalNumberTextBefore = getElementText(criticalEventsNumber);
+    }
+
+    public String criticalNumberTextAfter;
+
+    public String getCriticalNumberTextAfter() {
+        driverSleep(1000);
+        return this.criticalNumberTextAfter = getElementText(criticalEventsNumber);
+    }
+
     @FindBy(xpath = "(//h1[@class=' text-center text-nowrap'])[2]")
     private WebElement nonCriticalEventsNumber;
 
@@ -211,14 +225,14 @@ public class AnalyticPage extends BasePage {
 
     public String analyticText;
 
-    public String getAnalyticText(String text){
+    public String getAnalyticText(String text) {
         WaitHelper.getWait().waitForElementToBeVisible
                 (By.xpath("//div[@class='uploader-status ng-star-inserted']"));
         WaitHelper.getWait().waitForElementToBeInVisible
                 (By.xpath("//div[@class='uploader-status ng-star-inserted']"));
         driverSleep(300);
-        for (WebElement analyticElementText: analyticElementTexts){
-            if (getElementText(analyticElementText).equals(text)){
+        for (WebElement analyticElementText : analyticElementTexts) {
+            if (getElementText(analyticElementText).equals(text)) {
                 break;
             }
         }
@@ -227,4 +241,18 @@ public class AnalyticPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='uploader-status ng-star-inserted']")
     private WebElement loadingElement;
+
+    @FindBy(xpath = "(//*[@role='widget'])[1]")
+    private WebElement firstChart;
+
+    @FindBy(xpath = "(//*[@role='widget'])[2]")
+    private WebElement secondChart;
+
+    public boolean isDisplayedFirstChart() {
+        return isDisplayed(firstChart);
+    }
+
+    public boolean isDisplayedSecondChart() {
+        return isDisplayed(firstChart);
+    }
 }

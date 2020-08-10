@@ -134,4 +134,17 @@ public class EventPage extends BasePage {
         driverSleep(500);
         return this.commentsValueBefore = getElementText(beforeCommentsText);
     }
+
+    @FindBy(css = ".panel__header-left")
+    private WebElement leftPanel;
+
+    public boolean isDisplayedLeftPanel(){
+        return isDisplayed(leftPanel);
+    }
+
+    public boolean isNotDisplayedLeftPanel(){
+        WaitHelper.getWait().waitForElementToBeInVisible
+                (By.cssSelector(".panel__header-left"));
+        return isNotDisplayed(leftPanel);
+    }
 }

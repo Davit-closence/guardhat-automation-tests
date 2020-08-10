@@ -51,4 +51,16 @@ public class EventPageTest extends BaseTest {
         eventPage.getCommentsValueBefore();
         Assert.assertEquals(eventPage.commentsValueBefore,"a few seconds ago","Comments text is not equal");
     }
+
+    @Test
+    public void verifyEventsDeselectFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        EventPage eventPage = new EventPage();
+        loginPage.loginGuard("davit", "guardhat2020");
+        eventPage.selectEventBtn();
+        eventPage.selectEventIcon();
+        Assert.assertTrue(eventPage.isDisplayedLeftPanel(), "Left panel is not displayed");
+        eventPage.selectEventIcon();
+        Assert.assertTrue(eventPage.isNotDisplayedLeftPanel(), "Left panel is displayed");
+    }
 }

@@ -1,3 +1,4 @@
+import general_setup.GoogleSheetData;
 import guardhat_ui.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,8 +9,8 @@ public class LoginTest extends BaseTest{
     public void verifyLoginFunctionality(){
         LoginPage loginPage = new LoginPage();
         loginPage.getUrl();
-        loginPage.fillUserNameField("davit");
-        loginPage.fillPasswordField("guardhat2020");
+        loginPage.fillUserNameField(GoogleSheetData.setGoogleSheetData(0));
+        loginPage.fillPasswordField(GoogleSheetData.setGoogleSheetData(1));
         loginPage.selectLoginBtn();
         loginPage.selectOverrideBtn();
         Assert.assertTrue(loginPage.isDisplayedLogoutBtn(),"Logout btn is not displayed");
@@ -19,8 +20,8 @@ public class LoginTest extends BaseTest{
     public void verifyLoginWithInvalidUserName(){
         LoginPage loginPage = new LoginPage();
         loginPage.getUrl();
-        loginPage.fillUserNameField("sccuserrr");
-        loginPage.fillPasswordField("guardhat2020");
+        loginPage.fillUserNameField(GoogleSheetData.setGoogleSheetData(4));
+        loginPage.fillPasswordField(GoogleSheetData.setGoogleSheetData(5));
         loginPage.selectLoginBtn();
         Assert.assertTrue(loginPage.isDisplayedErrorMessage(),"Error message is not displayed");
     }
@@ -29,8 +30,8 @@ public class LoginTest extends BaseTest{
     public void verifyLoginWithInvalidPass(){
         LoginPage loginPage = new LoginPage();
         loginPage.getUrl();
-        loginPage.fillUserNameField("davit");
-        loginPage.fillPasswordField("guardhat2016888");
+        loginPage.fillUserNameField(GoogleSheetData.setGoogleSheetData(2));
+        loginPage.fillPasswordField(GoogleSheetData.setGoogleSheetData(3));
         loginPage.selectLoginBtn();
         Assert.assertTrue(loginPage.isDisplayedErrorMessage(),"Error message is not displayed");
     }
@@ -39,8 +40,8 @@ public class LoginTest extends BaseTest{
     public void verifyLoginWithInvalidAllData(){
         LoginPage loginPage = new LoginPage();
         loginPage.getUrl();
-        loginPage.fillUserNameField("sccuserrrr");
-        loginPage.fillPasswordField("guardhat2016888");
+        loginPage.fillUserNameField(GoogleSheetData.setGoogleSheetData(6));
+        loginPage.fillPasswordField(GoogleSheetData.setGoogleSheetData(7));
         loginPage.selectLoginBtn();
         Assert.assertTrue(loginPage.isDisplayedErrorMessage(),"Error message is not displayed");
     }
@@ -49,8 +50,8 @@ public class LoginTest extends BaseTest{
     public void verifyLogoutFunctionality(){
         LoginPage loginPage = new LoginPage();
         loginPage.getUrl();
-        loginPage.fillUserNameField("davit");
-        loginPage.fillPasswordField("guardhat2020");
+        loginPage.fillUserNameField(GoogleSheetData.setGoogleSheetData(0));
+        loginPage.fillPasswordField(GoogleSheetData.setGoogleSheetData(1));
         loginPage.selectLoginBtn();
         loginPage.selectOverrideBtn();
         Assert.assertTrue(loginPage.isDisplayedLogoutBtn(),"Logout btn is not displayed");

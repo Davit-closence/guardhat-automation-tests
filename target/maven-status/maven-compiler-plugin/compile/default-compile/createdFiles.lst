@@ -1,9 +1,9 @@
-general_setup/DriverHelper.class
 general_setup/listeners/Retry.class
 general_setup/WaitHelper.class
 general_setup/listeners/RetryListener.class
 general_setup/telegram/TelegramGroupSender.class
+general_setup/listeners/SuiteListener.class
+general_setup/DriverHelper.class
 general_setup/BasePage.class
 guardhat_ui/LoginPage.class
 guardhat_ui/administration/UserManagerPage.class
-general_setup/listeners/SuiteListener.class
