@@ -1,3 +1,4 @@
+import general_setup.BasePage;
 import guardhat_ui.LoginPage;
 import guardhat_ui.events.EventPage;
 import org.testng.Assert;
@@ -9,7 +10,7 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsCloseBtnFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("Critical");
@@ -18,12 +19,12 @@ public class EventPageTest extends BaseTest {
         Assert.assertTrue(eventPage.isNotDisplayedCloseBtn(), "Close btn is Displayed");
     }
 
-// SCC-1022
+    // SCC-1022
     @Test
     public void verifyEventsResolveBtnFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("Critical");
@@ -39,7 +40,7 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsPostCommentsFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("Critical");
@@ -49,18 +50,68 @@ public class EventPageTest extends BaseTest {
         eventPage.getCommentsValue();
         eventPage.selectSaveCommentsBtn();
         eventPage.getCommentsValueBefore();
-        Assert.assertEquals(eventPage.commentsValueBefore,"a few seconds ago","Comments text is not equal");
+        Assert.assertEquals(eventPage.commentsValueBefore, "a few seconds ago", "Comments text is not equal");
     }
 
     @Test
     public void verifyEventsDeselectFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
         eventPage.selectEventIcon();
         Assert.assertTrue(eventPage.isDisplayedLeftPanel(), "Left panel is not displayed");
         eventPage.selectEventIcon();
         Assert.assertTrue(eventPage.isNotDisplayedLeftPanel(), "Left panel is displayed");
+    }
+
+    @Test
+    public void verifyEventsRefreshBrowserFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        EventPage eventPage = new EventPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        eventPage.selectEventBtn();
+        eventPage.selectEventIcon();
+        Assert.assertTrue(eventPage.isDisplayedLeftPanel(), "Left panel is not displayed");
+        eventPage.refreshBrowser();
+        Assert.assertTrue(eventPage.isDisplayedLeftPanel(), "Left panel is not displayed");
+    }
+
+    @Test
+    public void verifyEventsCriticalOptionFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        EventPage eventPage = new EventPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        eventPage.selectEventBtn();
+        eventPage.selectEventStatusDropDown();
+        eventPage.selectEventStatusOption("Critical");
+        Assert.assertTrue(eventPage.isDisplayedSocialDistanceIcon(),"Social distance icon is not displayed");
+    }
+
+    @Test
+    public void verifyEventsNonCriticalOptionFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        EventPage eventPage = new EventPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        eventPage.selectEventBtn();
+        eventPage.selectEventStatusDropDown();
+        eventPage.selectEventStatusOption("Non-Critical");
+        Assert.assertTrue(eventPage.isDisplayedDeviceInformationIcon(),"Device information icon is not displayed");
+    }
+
+    @Test
+    public void verifyEventsPostCommentBeforeResolve() {
+        LoginPage loginPage = new LoginPage();
+        EventPage eventPage = new EventPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        eventPage.selectEventBtn();
+        eventPage.selectEventStatusDropDown();
+        eventPage.selectEventStatusOption("Critical");
+        eventPage.selectEventIcon();
+        eventPage.selectResolveBtn();
+        eventPage.fillCommentsFieldPopup();
+        eventPage.selectConfirmPopupBtn();
+        Assert.assertTrue(eventPage.isDisplayedResolvedElement(), "Resolved element is not displayed");
+        Assert.assertTrue(eventPage.isNotDisplayedResolvedElement(), "Resolved element is displayed");
     }
 }

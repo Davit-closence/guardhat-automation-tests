@@ -1,3 +1,4 @@
+import general_setup.BasePage;
 import guardhat_ui.HomePage;
 import guardhat_ui.LoginPage;
 import guardhat_ui.devices.WorkersPage;
@@ -12,7 +13,7 @@ public class HomePageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
         HomePage homePage = new HomePage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         homePage.selectActiveBtn();
         workersPage.getStatusArray("Active");
         Assert.assertEquals(workersPage.workerStatusText, "Active");
@@ -24,7 +25,7 @@ public class HomePageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
         HomePage homePage = new HomePage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         homePage.selectMiaBtn();
         workersPage.getStatusArray("MIA");
         Assert.assertEquals(workersPage.workerStatusText, "MIA");
@@ -34,7 +35,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHomeCriticalBtn() {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = new HomePage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         homePage.selectCriticalBtn();
         Assert.assertTrue(homePage.isDisplayedTotalEventsText(),"Total events text is not displayed");
     }
@@ -43,7 +44,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHomeNonCriticalBtn() {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = new HomePage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         homePage.selectNonCriticalBtnBtn();
         Assert.assertTrue(homePage.isDisplayedTotalEventsText(),"Total events text is not displayed");
     }
@@ -52,7 +53,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHomeGeofenceBtn() {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = new HomePage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         homePage.selectGeofenceBtn();
         Assert.assertTrue(homePage.isDisplayedNewZoneBtn(),"New Zone btn is not displayed");
     }
@@ -61,7 +62,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHomeEvacuationBtn() {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = new HomePage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         homePage.selectEvacuationBtn();
         Assert.assertTrue(homePage.isDisplayedNewZoneBtn(),"New Zone btn is not displayed");
     }

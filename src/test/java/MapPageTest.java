@@ -1,3 +1,4 @@
+import general_setup.BasePage;
 import guardhat_ui.LoginPage;
 import guardhat_ui.zones.MapPage;
 import org.testng.annotations.Test;
@@ -8,7 +9,7 @@ public class MapPageTest extends BaseTest {
     public void tst() {
         LoginPage loginPage = new LoginPage();
         MapPage mapPage = new MapPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         System.out.println(mapPage.getZonesButtonX() + " " + mapPage.getZonesButtonY());
         mapPage.selectZonesBtn();
         mapPage.selectNewZoneBtn();

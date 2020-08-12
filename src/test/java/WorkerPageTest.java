@@ -1,3 +1,4 @@
+import general_setup.BasePage;
 import guardhat_ui.LoginPage;
 import guardhat_ui.devices.WorkersPage;
 import org.testng.Assert;
@@ -11,7 +12,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersStatusOffline() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectDeviceStatusOption("Offline");
         workersPage.getDeviceStatusText();
@@ -22,7 +23,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersStatusOnline() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectDeviceStatusOption("Offline");
         workersPage.selectDeviceStatusOption("Online");
@@ -35,7 +36,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersRefreshFunctionality() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectReloadBtn();
         Assert.assertTrue(workersPage.isNotDisplayedFirstDeviceIcon(), "Device icon is displayed");
@@ -47,7 +48,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersTrackFunctionality() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectFirstDeviceIcon();
         workersPage.selectTrackBtn();
@@ -59,7 +60,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersStopTrackFunctionality() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectFirstDeviceIcon();
         workersPage.selectTrackBtn();
@@ -74,7 +75,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersStatusNoDevice() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectDeviceStatusOption("No device");
         Assert.assertTrue(workersPage.isNotDisplayedFirstDeviceIcon(), "Device icon is displayed");
@@ -85,7 +86,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersSensorTextFunctionality() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectFirstDeviceIcon();
         Assert.assertTrue(workersPage.isDisplayedSensorReadingsText(), "Sensor readings text is not display");
@@ -96,7 +97,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersCloseFunctionality() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectFirstDeviceIcon();
         workersPage.selectCloseBtn();
@@ -108,7 +109,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersDeviceUnselectFunctionality() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectFirstDeviceIcon();
         Assert.assertTrue(workersPage.isDisplayedSensorReadingsText(), "Sensor readings text is not display");
@@ -121,7 +122,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersStatusAll() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectDeviceStatusOption("All");
         workersPage.getStatusArray("Offline");
@@ -136,7 +137,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersGeneralWebElement() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectFirstDeviceIcon();
         Assert.assertTrue(workersPage.isDisplayedSensorReadingsText(),"Sensor text does not display");
@@ -152,7 +153,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersStatusMia() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectDeviceStatusOption("MIA");
         workersPage.getStatusArray("MIA");
@@ -163,7 +164,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersActiveDeviceCount() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.getDeviceCountAfterRefresh();
         workersPage.selectReloadBtn();
@@ -175,7 +176,7 @@ public class WorkerPageTest extends BaseTest {
     public void verifyWorkersMiaDeviceCount() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
         workersPage.selectDeviceStatusOption("MIA");
         workersPage.getDeviceCountAfterRefresh();

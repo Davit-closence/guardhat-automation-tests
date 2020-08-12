@@ -12,7 +12,7 @@ import java.util.List;
 public class EventPage extends BasePage {
     @Override
     public String getUrl() {
-        return "https://ddd2.guardhat.io/";
+        return BasePage.BASE_UI_URL;
     }
 
     public EventPage() {
@@ -146,5 +146,44 @@ public class EventPage extends BasePage {
         WaitHelper.getWait().waitForElementToBeInVisible
                 (By.cssSelector(".panel__header-left"));
         return isNotDisplayed(leftPanel);
+    }
+
+    public void refreshBrowser(){
+        driver.navigate().refresh();
+        driverSleep(300);
+    }
+
+    @FindBy(xpath = "(//div[contains(@class, 'eventlist__column c-listview__column')])[4]//text()")
+    private WebElement eventTextElement;
+
+    public String eventText;
+
+    public String getEventText(){
+        return this.eventText = getElementText(eventTextElement);
+    }
+
+    public boolean isEventTextEqual(String text){
+       return this.eventText.contains(text);
+    }
+
+    @FindBy(xpath = "(//*[@class='gh-icon icon-EC602'])[1]")
+    private WebElement socialDistanceIcon;
+
+    public boolean isDisplayedSocialDistanceIcon(){
+        return isDisplayed(socialDistanceIcon);
+    }
+
+    @FindBy(xpath = "(//*[@class='gh-icon icon-EG015'])[1]")
+    private WebElement deviceInformationIcon;
+
+    public boolean isDisplayedDeviceInformationIcon(){
+        return isDisplayed(deviceInformationIcon);
+    }
+
+    @FindBy(xpath = "//textarea")
+    private WebElement commentsFieldPopup;
+
+    public void fillCommentsFieldPopup(){
+        type(commentsFieldPopup,currentData());
     }
 }

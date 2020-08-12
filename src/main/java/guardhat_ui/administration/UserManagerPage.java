@@ -13,7 +13,7 @@ import java.util.List;
 public class UserManagerPage extends BasePage {
     @Override
     public String getUrl() {
-        return "http://localhost:4200/login";
+        return BasePage.BASE_UI_URL;
     }
 
     public UserManagerPage() {

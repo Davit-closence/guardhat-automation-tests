@@ -13,7 +13,7 @@ import java.util.List;
 public class WorkersPage extends BasePage {
     @Override
     public String getUrl() {
-        return "https://ddd2.guardhat.io/";
+        return BasePage.BASE_UI_URL;
     }
 
     public WorkersPage() {

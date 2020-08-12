@@ -12,7 +12,7 @@ import java.util.List;
 public class GalleryPage extends BasePage {
     @Override
     public String getUrl() {
-        return "https://ddd2.guardhat.io";
+        return BasePage.BASE_UI_URL;
     }
 
     public GalleryPage() {
@@ -136,5 +136,47 @@ public class GalleryPage extends BasePage {
 
     public boolean isDisplayedSuccessMessage(){
         return isDisplayed(successMessage);
+    }
+
+    @FindBy(xpath = "//img[@alt='user profile image']")
+    private WebElement userProfileImage;
+
+    public boolean isDisplayedUserProfileImage(){
+        return isDisplayed(userProfileImage);
+    }
+
+    @FindBy(xpath = "//div[@class='c-admin-battery']")
+    private WebElement deviceBatteryElement;
+
+    public boolean isDisplayedDeviceBatteryElement(){
+        return isDisplayed(deviceBatteryElement);
+    }
+
+    @FindBy(xpath = "//span[@class='text-bold']")
+    private WebElement devicePercentage;
+
+    public boolean isDisplayedDevicePercentage(){
+        return isDisplayed(devicePercentage);
+    }
+
+    @FindBy(xpath = "//h2[@class='panel__title']")
+    private WebElement panelTitle;
+
+    public boolean isDisplayedPanelTitle(){
+        return isDisplayed(panelTitle);
+    }
+
+    @FindBy(xpath = "//canvas[@class]")
+    private WebElement miniMap;
+
+    public boolean isDisplayedMiniMap(){
+        return isDisplayed(miniMap);
+    }
+
+    @FindBy(xpath = "(//img[@alt='related Media thumbnail'])[1]")
+    private WebElement relatedFile;
+
+    public boolean isDisplayedRelatedFile(){
+        return isDisplayed(relatedFile);
     }
 }

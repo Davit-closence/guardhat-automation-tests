@@ -12,7 +12,7 @@ import java.util.List;
 public class AnalyticPage extends BasePage {
     @Override
     public String getUrl() {
-        return "https://ddd2.guardhat.io";
+        return BasePage.BASE_UI_URL;
     }
 
     public AnalyticPage() {
@@ -254,5 +254,12 @@ public class AnalyticPage extends BasePage {
 
     public boolean isDisplayedSecondChart() {
         return isDisplayed(firstChart);
+    }
+
+    @FindBy(xpath = "(//*[contains(@transform, 'translate')])[1]")
+    private WebElement reportGraph;
+
+    public boolean isDisplayedReportGraph(){
+        return isDisplayed(reportGraph);
     }
 }

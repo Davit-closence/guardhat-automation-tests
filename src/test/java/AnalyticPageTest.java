@@ -1,3 +1,4 @@
+import general_setup.BasePage;
 import guardhat_ui.LoginPage;
 
 import guardhat_ui.analytics.AnalyticPage;
@@ -11,7 +12,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyOverViewSectionAppear() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         Assert.assertTrue(analyticPage.isDisplayedAnalyticsBarChart(),"Chart is not displayed");
     }
@@ -20,7 +21,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyOverViewChartSection() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         Assert.assertTrue(analyticPage.isDisplayedFirstChart(),"First Chart is not displayed");
         Assert.assertTrue(analyticPage.isDisplayedSecondChart(),"Second Chart is not displayed");
@@ -30,7 +31,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyOverViewDevicePowerOnOption() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectSiteDropDown();
         analyticPage.selectSiteOption("All");
@@ -46,10 +47,11 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyKpiReportAppear() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectKpiReport();
         Assert.assertTrue(analyticPage.isDisplayedFormGroupElement(),"Form group is not displayed");
+        Assert.assertTrue(analyticPage.isDisplayedReportGraph(),"Graph is not displayed");
     }
 
     // SCC-??
@@ -57,7 +59,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyKpiReportCriticalNumbers() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectKpiReport();
         Assert.assertTrue(analyticPage.isDisplayedCriticalEventsNumber(),"Critical Numbers is not displayed");
@@ -67,7 +69,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyKpiReportNonCriticalNumbers() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectKpiReport();
         Assert.assertTrue(analyticPage.isDisplayedNonCriticalEventsNumber(),"Non Critical Numbers is not displayed");
@@ -77,7 +79,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyKpiReportChangeSiteFunctionality() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectKpiReport();
         analyticPage.getCriticalNumberTextBefore();
@@ -92,7 +94,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyKpiReportAverageResolutionNumbers() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectKpiReport();
         Assert.assertTrue(analyticPage.isDisplayedAverageResolutionTimeNumber(),"Average resolution Numbers is not displayed");
@@ -102,7 +104,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyZoneReportAppear() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectZoneReportBtn();
         Assert.assertTrue(analyticPage.isDisplayedSelectZoneText(),"Zone text is not displayed");
@@ -112,7 +114,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyLocationReportAppear() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectLocationReportBtn();
         Assert.assertTrue(analyticPage.isDisplayedLocationForText(),"Location for label is not displayed");
@@ -122,7 +124,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyLocationAuditTrailAppear() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectAuditTrailReportBtn();
         Assert.assertTrue(analyticPage.isDisplayedAuditTrailText(),"Audit trail label is not displayed");
@@ -132,7 +134,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifySensorReadingsAppear() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectSensorReadingsBtn();
 // in progress
@@ -142,7 +144,7 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyProximityReportAppear() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard("davit", "guardhat2020");
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
         analyticPage.selectProximityReportBtn();
         Assert.assertTrue(analyticPage.isDisplayedProximityForText(),"Proximity text label is not displayed");

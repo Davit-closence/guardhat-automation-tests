@@ -9,7 +9,7 @@ public class LoginPage extends BasePage {
 
     @Override
     public String getUrl() {
-        return "https://ddd2.guardhat.io/";
+        return BasePage.BASE_UI_URL;
     }
 
     public LoginPage() {
