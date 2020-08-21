@@ -17,4 +17,18 @@ public class ChangePassTest extends BaseTest{
         changePassPage.selectCloseBtn();
         Assert.assertTrue(changePassPage.isNotDisplayedPanelDetailElement(),"Panel detail element is  displayed");
     }
+
+    @Test
+    public void verifyChangePassFunctionalityInvalidCurrentPass(){
+        ChangePassPage changePassPage = new ChangePassPage();
+        LoginPage loginPage = new LoginPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        changePassPage.selectAdministrationBtn();
+        changePassPage.selectChangePasswordBtn();
+        changePassPage.fillCurrentPassField("BlaBlaBla");
+        changePassPage.fillNewPassField("BlaBlaBla123!");
+        changePassPage.fillConfirmPassField("BlaBlaBla123!");
+        changePassPage.selectSaveBtn();
+        Assert.assertTrue(changePassPage.isDisplayedPassNotChangeMessage(),"Pass not changed message is not displayed");
+    }
 }

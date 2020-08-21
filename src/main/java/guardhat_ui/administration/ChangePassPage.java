@@ -3,7 +3,6 @@ package guardhat_ui.administration;
 import general_setup.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.annotations.Test;
 
 public class ChangePassPage extends BasePage {
     @Override
@@ -48,10 +47,38 @@ public class ChangePassPage extends BasePage {
         return isNotDisplayed(panelDetailElement);
     }
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//button[@class='o-btn c-btn--large c-btn--utility enable']")
     private WebElement saveBtn;
 
     public void selectSaveBtn(){
         click(saveBtn);
+    }
+
+    @FindBy(xpath = "(//input[@type='password'])[1]")
+    private WebElement currentPassField;
+
+    public void fillCurrentPassField(String currentPass){
+        type(currentPassField,currentPass);
+    }
+
+    @FindBy(xpath = "(//input[@type='password'])[2]")
+    private WebElement newPassField;
+
+    public void fillNewPassField(String newPass){
+        type(newPassField,newPass);
+    }
+
+    @FindBy(xpath = "(//input[@type='password'])[3]")
+    private WebElement confirmPassField;
+
+    public void fillConfirmPassField(String confirmPass){
+        type(confirmPassField,confirmPass);
+    }
+
+    @FindBy(xpath = "//p[text()=' Password not changed! ']")
+    private WebElement passNotChangeMessage;
+
+    public boolean isDisplayedPassNotChangeMessage(){
+        return isDisplayed(passNotChangeMessage);
     }
 }

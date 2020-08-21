@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.Select;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -159,5 +160,9 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
         WaitHelper.getWait().waitForElementToBeVisible(element);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
+    }
+
+    public void selectDropDownItemByName(WebElement element, String name) {
+        new Select(element).selectByVisibleText(name);
     }
 }

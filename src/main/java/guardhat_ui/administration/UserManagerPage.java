@@ -1,5 +1,6 @@
 package guardhat_ui.administration;
 
+import com.sun.tools.example.debug.expr.ExpressionParser;
 import general_setup.BasePage;
 import general_setup.WaitHelper;
 import org.openqa.selenium.By;
@@ -53,14 +54,25 @@ public class UserManagerPage extends BasePage {
     private WebElement firstNameField;
 
     public void fillFirstNameField() {
-        type(firstNameField, "FirstName " + currentData());
+        type(firstNameField, "SQA_FirstName " + currentData());
+    }
+
+    public String firstNameText;
+    public String lastNameText;
+
+    public String getFirstNameText() {
+        return this.firstNameText = getElementValue(firstNameField);
+    }
+
+    public String getLastNameText() {
+        return this.lastNameText = getElementValue(lastNameField);
     }
 
     @FindBy(xpath = "//input[@formcontrolname='lastName']")
     private WebElement lastNameField;
 
     public void fillLastNameField() {
-        type(lastNameField, "LastName " + currentData());
+        type(lastNameField, "SQA_LastName " + currentData());
     }
 
     @FindBy(xpath = "//input[@formcontrolname='employeeId']")
@@ -183,11 +195,12 @@ public class UserManagerPage extends BasePage {
         }
     }
 
-    @FindBy(xpath = "//span[text()=' Arm1 ']")
+    @FindBy(xpath = "(//span[@class='mat-option-text'])[1]")
     private WebElement siteArmOption;
 
     public void selectSiteArmOption() {
         click(siteDropDown);
+        driverSleep(800);
         click(siteArmOption);
     }
 
@@ -227,7 +240,7 @@ public class UserManagerPage extends BasePage {
     @FindBy(xpath = "//label[text()='Hat User']")
     private WebElement hatUserBtn;
 
-    public void selectHatUserBtn(){
+    public void selectHatUserBtn() {
         click(hatUserBtn);
     }
 
@@ -235,49 +248,198 @@ public class UserManagerPage extends BasePage {
     @FindBy(xpath = "//input[@formcontrolname='sipUsername']")
     private WebElement sipUsernameField;
 
-    public void fillSipUsernameField(){
-        type(sipUsernameField,currentData());
+    public void fillSipUsernameField() {
+        type(sipUsernameField, currentData());
     }
 
     @FindBy(xpath = "//input[@formcontrolname='sipPassword']")
     private WebElement sipPasswordField;
 
-    public void fillSipPasswordField(){
-        type(sipPasswordField,"sqa12345");
+    public void fillSipPasswordField() {
+        type(sipPasswordField, "sqa12345");
     }
 
     @FindBy(xpath = "//input[@formcontrolname='confirmSipPassword']")
     private WebElement confirmSipPasswordField;
 
-    public void selectConfirmSipPasswordField(){
-        type(confirmSipPasswordField,"sqa12345");
+    public void selectConfirmSipPasswordField() {
+        type(confirmSipPasswordField, "sqa12345");
     }
 
     @FindBy(xpath = "(//span[text()='Next'])[2]")
     private WebElement secondNextBtn;
 
-    public void selectSecondNextBtn(){
+    public void selectSecondNextBtn() {
         click(secondNextBtn);
     }
 
     @FindBy(xpath = "//span[text()='Add User']")
     private WebElement addUserFinishBtn;
 
-    public void selectAddUserFinishBtn(){
+    public void selectAddUserFinishBtn() {
         click(addUserFinishBtn);
     }
 
     @FindBy(xpath = "//button[text()='Confirm']")
     private WebElement confirmBtn;
 
-    public void selectConfirmBtn(){
+    public void selectConfirmBtn() {
         click(confirmBtn);
     }
 
     @FindBy(xpath = "//*[text()=' New User has been added! ']")
     private WebElement userAddMessage;
 
-    public boolean isDisplayedUserAddMessage(){
+    public boolean isDisplayedUserAddMessage() {
         return isDisplayed(userAddMessage);
     }
+
+    @FindBy(xpath = "//div[@class='mat-select-value']")
+    private WebElement languageDropDown;
+
+    public void selectLanguageDropDown() {
+        click(languageDropDown);
+    }
+
+    @FindBys({
+            @FindBy(xpath = "//span[@class='mat-option-text']")
+    })
+    private List<WebElement> languageOptions;
+
+    public void selectLanguageOption(String option) {
+        WaitHelper.getWait().waitForElementToBeVisible
+                (By.xpath("//div[@dir='ltr']"));
+        for (WebElement languageOption : languageOptions) {
+            if (getElementText(languageOption).equals(option)) {
+                click(languageOption);
+                break;
+            }
+        }
+    }
+
+    @FindBy(xpath = "//a[text()=' Изменить пароль ']")
+    private WebElement rusChangePassBtn;
+
+
+    public boolean isDisplayedRusChangePassBtn() {
+        return isDisplayed(rusChangePassBtn);
+    }
+
+    @FindBy(xpath = "//span[text()='Pусский']")
+    private WebElement rusLanguageDrDw;
+
+    public void selectRusLanguageDrDw() {
+        click(rusLanguageDrDw);
+    }
+
+    @FindBy(xpath = "//span[text()='English']")
+    private WebElement englishOption;
+
+    public void selectEnglishOption() {
+        click(englishOption);
+    }
+
+    @FindBy(xpath = "//a[text()=' Change Password ']")
+    private WebElement enChangePassBtn;
+
+    public boolean isDisplayedEnChangePassBtn() {
+        return isDisplayed(enChangePassBtn);
+    }
+
+    @FindBy(xpath = "//span[contains(text(),'Last updated by System Administrator on')]")
+    private WebElement updateSystemText;
+
+    public boolean isDisplayedUpdateSystemText() {
+        return isDisplayed(updateSystemText);
+    }
+
+    @FindBy(xpath = "(//div[@class='o-media__body'])[2]")
+    private WebElement userCredentialText;
+
+    public boolean isDisplayedUserCredentialText() {
+        return isDisplayed(userCredentialText);
+    }
+
+
+    public void createUser() {
+        selectAddUserBtn();
+        fillFirstNameField();
+        getFirstNameText();
+        fillLastNameField();
+        getLastNameText();
+        fillEmployeeIdField();
+        fillJobTitleField();
+        fillPhoneField();
+        fillEmailField();
+        selectCompanyGeOption();
+        selectDepartmentItOption();
+        selectSiteArmOption();
+//        managerPage.selectBuildingBuildOption();
+        selectNextBtn();
+        selectHatUserBtn();
+        fillSipUsernameField();
+        fillSipPasswordField();
+        selectConfirmSipPasswordField();
+        selectSecondNextBtn();
+        selectAddUserFinishBtn();
+        selectConfirmBtn();
+        isDisplayedUserAddMessage();
+    }
+
+    @FindBy(xpath = "//input")
+    private WebElement userSearchField;
+
+    public void fillUserSearchField(String text) {
+        type(userSearchField, text);
+    }
+
+    @FindBy(xpath = "(//div[@class='c-listview__icon'])[1]")
+    private WebElement firstIcon;
+
+    public void selectFirstIcon() {
+        click(firstIcon);
+    }
+
+    @FindBy(xpath = "//*[text()=' Edit  ']")
+    private WebElement editBtn;
+
+    public void selectEditBtn() {
+        click(editBtn);
+    }
+
+    @FindBy(xpath = "//*[text()=' Disable ']")
+    private WebElement disableBtn;
+
+    public void selectDisableBtn() {
+        click(disableBtn);
+    }
+
+    @FindBy(xpath = "//p[contains(text(),'User has been disabled')]")
+    private WebElement userDisableMessage;
+
+    public boolean isDisplayedUserDisableMessage() {
+        return isDisplayed(userDisableMessage);
+    }
+
+    @FindBy(xpath = "//*[text()=' Enable ']")
+    private WebElement enableBtn;
+
+    public void selectEnableBtn() {
+        click(enableBtn);
+    }
+
+    @FindBy(xpath = "//p[contains(text(),'User has been enabled')]")
+    private WebElement userEnableMessage;
+
+    public boolean isDisplayedUserEnableMessage() {
+        return isDisplayed(userEnableMessage);
+    }
+
+    @FindBy(xpath = "//a[text()=' Close ']")
+    private WebElement closeBtn;
+
+    public void selectCloseBtn(){
+        click(closeBtn);
+    }
+
 }

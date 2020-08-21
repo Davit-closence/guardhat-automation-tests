@@ -16,6 +16,11 @@ public class WaitHelper {
                 until(ExpectedConditions.visibilityOfElementLocated(location));
     }
 
+    public void waitForElementToBeClickable(By location) {
+        new WebDriverWait(DriverHelper.get().getDriver(), 30).
+                until(ExpectedConditions.elementToBeClickable(location));
+    }
+
     public void waitForElementToBeInVisible(By location) {
         new WebDriverWait(DriverHelper.get().getDriver(), 30)
                 .until(ExpectedConditions.invisibilityOfElementLocated(location));
