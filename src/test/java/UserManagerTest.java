@@ -28,8 +28,8 @@ public class UserManagerTest extends BaseTest {
         managerPage.selectNextBtn();
         managerPage.selectHatUserBtn();
         managerPage.fillSipUsernameField();
-        managerPage.fillSipPasswordField();
-        managerPage.selectConfirmSipPasswordField();
+        managerPage.fillSipPasswordField("sqa12345");
+        managerPage.fillConfirmSipPasswordField("sqa12345");
         managerPage.selectSecondNextBtn();
         managerPage.selectAddUserFinishBtn();
         managerPage.selectConfirmBtn();
@@ -68,7 +68,7 @@ public class UserManagerTest extends BaseTest {
         managerPage.selectAdministrationBtn();
         managerPage.selectMyProfileDropDown();
         managerPage.selectUserManagerOption();
-        managerPage.createUser();
+        managerPage.createHatUser("sqa12345","sqa12345");
         managerPage.selectCloseBtn();
         managerPage.fillUserSearchField(managerPage.firstNameText + managerPage.lastNameText);
         managerPage.selectFirstIcon();
@@ -79,5 +79,27 @@ public class UserManagerTest extends BaseTest {
         managerPage.selectDisableBtn();
         managerPage.selectConfirmBtn();
         Assert.assertTrue(managerPage.isDisplayedUserDisableMessage(),"Disable Message is not displayed");
+    }
+
+    @Test
+    public void verifyUserSystemUserConfigurationFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        UserManagerPage managerPage = new UserManagerPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        managerPage.selectAdministrationBtn();
+        managerPage.selectMyProfileDropDown();
+        managerPage.selectUserManagerOption();
+        managerPage.createSystemUser("user");
+        managerPage.selectCloseBtn();
+        managerPage.fillUserSearchField(managerPage.firstNameText + managerPage.lastNameText);
+        managerPage.selectFirstIcon();
+        managerPage.selectEditBtn();
+        managerPage.selectDeviceUserCheckbox();
+        Assert.assertTrue(managerPage.isDisplayedHatUserCheckbox(),"Hay User checkbox is not displayed");
+        managerPage.selectHatUserCheckbox();
+        Assert.assertTrue(managerPage.isDisplayedDeviceUserCheckbox(),"Device checkbox is not displayed");
+        managerPage.selectSaveBtn();
+        managerPage.selectConfirmBtn();
+        Assert.assertTrue(managerPage.isDisplayedUpdateMessage(),"Update message is not displayed");
     }
 }

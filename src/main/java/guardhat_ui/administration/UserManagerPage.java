@@ -244,6 +244,12 @@ public class UserManagerPage extends BasePage {
         click(hatUserBtn);
     }
 
+    @FindBy(xpath = "//label[text()='System User']")
+    private WebElement systemUserBtn;
+
+    public void selectSystemUserBtn() {
+        click(systemUserBtn);
+    }
 
     @FindBy(xpath = "//input[@formcontrolname='sipUsername']")
     private WebElement sipUsernameField;
@@ -255,15 +261,15 @@ public class UserManagerPage extends BasePage {
     @FindBy(xpath = "//input[@formcontrolname='sipPassword']")
     private WebElement sipPasswordField;
 
-    public void fillSipPasswordField() {
-        type(sipPasswordField, "sqa12345");
+    public void fillSipPasswordField(String sipPass) {
+        type(sipPasswordField, sipPass);
     }
 
     @FindBy(xpath = "//input[@formcontrolname='confirmSipPassword']")
     private WebElement confirmSipPasswordField;
 
-    public void selectConfirmSipPasswordField() {
-        type(confirmSipPasswordField, "sqa12345");
+    public void fillConfirmSipPasswordField(String confirmSipPass) {
+        type(confirmSipPasswordField, confirmSipPass);
     }
 
     @FindBy(xpath = "(//span[text()='Next'])[2]")
@@ -361,7 +367,7 @@ public class UserManagerPage extends BasePage {
     }
 
 
-    public void createUser() {
+    public void createHatUser(String sipPass,String confirmSipPass) {
         selectAddUserBtn();
         fillFirstNameField();
         getFirstNameText();
@@ -378,12 +384,119 @@ public class UserManagerPage extends BasePage {
         selectNextBtn();
         selectHatUserBtn();
         fillSipUsernameField();
-        fillSipPasswordField();
-        selectConfirmSipPasswordField();
+        fillSipPasswordField(sipPass);
+        fillConfirmSipPasswordField(confirmSipPass);
         selectSecondNextBtn();
         selectAddUserFinishBtn();
         selectConfirmBtn();
         isDisplayedUserAddMessage();
+    }
+
+    public void createSystemUser(String permission) {
+        selectAddUserBtn();
+        fillFirstNameField();
+        getFirstNameText();
+        fillLastNameField();
+        getLastNameText();
+        fillEmployeeIdField();
+        fillJobTitleField();
+        fillPhoneField();
+        fillEmailField();
+        selectCompanyGeOption();
+        selectDepartmentItOption();
+        selectSiteArmOption();
+        selectNextBtn();
+        selectSystemUserBtn();
+        fillUserNameField();
+        getUserName();
+        selectPermissionDropDown();
+        selectPermissionOption(permission);
+        fillEnterPassField(userName);
+        fillConfirmPassField(userName);
+        fillSipUsernameField();
+        fillSipPasswordField(userName);
+        fillConfirmSipPasswordField(userName);
+        selectSecondNextBtn();
+        selectAddUserFinishBtn();
+        selectConfirmBtn();
+        isDisplayedUserAddMessage();
+    }
+
+    @FindBy(xpath = "//input[@formcontrolname='userName']")
+    private WebElement userNameField;
+
+    public void fillUserNameField() {
+        type(userNameField, "sqa" + currentData());
+    }
+
+    public String userName;
+
+    public String getUserName(){
+        return this.userName = getElementValue(userNameField);
+    }
+
+    @FindBy(xpath = "//mat-select[@formcontrolname='clientRole']")
+    private WebElement permissionDropDown;
+
+    public void selectPermissionDropDown() {
+        click(permissionDropDown);
+    }
+
+    @FindBys({
+            @FindBy(xpath = "//mat-option/span")
+    })
+    private List<WebElement> permissionOptions;
+
+    public void selectPermissionOption(String option) {
+        for (WebElement permissionOption : permissionOptions) {
+            if (getElementText(permissionOption).equals(option)) {
+                click(permissionOption);
+                break;
+            }
+        }
+    }
+
+    @FindBy(xpath = "//input[@formcontrolname='password']")
+    private WebElement enterPassField;
+
+    public void fillEnterPassField(String enterPass) {
+        type(enterPassField, enterPass);
+    }
+
+    @FindBy(xpath = "//input[@formcontrolname='confirmPassword']")
+    private WebElement confirmPassField;
+
+    public void fillConfirmPassField(String confirmPass) {
+        type(confirmPassField, confirmPass);
+    }
+
+    @FindBy(xpath = "//span[text()='Set user as a hat user']")
+    private WebElement hatUserCheckbox;
+
+    public void selectHatUserCheckbox(){
+        click(hatUserCheckbox);
+    }
+
+    @FindBy(xpath = "//span[text()='Device User']")
+    private WebElement deviceUserCheckbox;
+
+    public boolean isDisplayedDeviceUserCheckbox(){
+        return isDisplayed(deviceUserCheckbox);
+    }
+
+    public void selectDeviceUserCheckbox(){
+        click(deviceUserCheckbox);
+    }
+
+    public boolean isDisplayedHatUserCheckbox(){
+        return isDisplayed(hatUserCheckbox);
+    }
+
+    @FindBy(xpath = "//*[contains(text(),' Save ')]")
+    private WebElement saveBtn;
+
+    public void selectSaveBtn(){
+        click(saveBtn);
     }
 
     @FindBy(xpath = "//input")
@@ -421,6 +534,13 @@ public class UserManagerPage extends BasePage {
         return isDisplayed(userDisableMessage);
     }
 
+    @FindBy(xpath = "//p[contains(text(),'has been updated')]")
+    private WebElement updateMessage;
+
+    public boolean isDisplayedUpdateMessage(){
+        return isDisplayed(updateMessage);
+    }
+
     @FindBy(xpath = "//*[text()=' Enable ']")
     private WebElement enableBtn;
 
@@ -438,7 +558,7 @@ public class UserManagerPage extends BasePage {
     @FindBy(xpath = "//a[text()=' Close ']")
     private WebElement closeBtn;
 
-    public void selectCloseBtn(){
+    public void selectCloseBtn() {
         click(closeBtn);
     }
 
