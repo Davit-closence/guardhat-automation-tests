@@ -5,11 +5,22 @@
         <listener class-name="general_setup.listeners.RetryListener"/>
     </listeners>
     <test name="all-packages" parallel="methods" thread-count="1">
-        <packages>
-            <package name=".*" />
-        </packages>
-<!--        <classes>-->
-<!--            <class name="LoginTest"></class>-->
-<!--        </classes>-->
+        <classes>
+            <class name="HomePageTest">
+                <methods>
+                    <include name="verifyHomeActiveBtn"/>
+                </methods>
+            </class>
+            <class name="EventPageTest">
+                <methods>
+                    <include name="verifyEventsResolveBtnFunctionality"/>
+                </methods>
+            </class>
+            <class name="WorkerPageTest">
+                <methods>
+                    <include name="verifyWorkersStopTrackFunctionality"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>

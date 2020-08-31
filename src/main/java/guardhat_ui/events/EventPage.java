@@ -31,6 +31,7 @@ public class EventPage extends BasePage {
     private WebElement eventStatusDropDown;
 
     public void selectEventStatusDropDown() {
+        driverSleep(3000);
         click(eventStatusDropDown);
     }
 
@@ -41,7 +42,7 @@ public class EventPage extends BasePage {
 
     public void selectEventStatusOption(String text) {
         for (WebElement eventStatusOption : eventStatusOptions) {
-            if (getElementText(eventStatusOption).equals(text)) {
+            if (getElementAtt(eventStatusOption,"value").equals(text)) {
                 click(eventStatusOption);
                 break;
             }
@@ -185,5 +186,34 @@ public class EventPage extends BasePage {
 
     public void fillCommentsFieldPopup(){
         type(commentsFieldPopup,currentData());
+    }
+
+    @FindBy(xpath = "//h2[text()='Last five events']")
+    private WebElement lastFiveText;
+
+    public boolean isDisplayedLastFiveText(){
+        return isDisplayed(lastFiveText);
+    }
+
+    @FindBy(xpath = "(//a[@class='eventlist__event event--warning ng-star-inserted'])[1]")
+    private WebElement firstEventNonCritical;
+
+    public String firstEventNonCriticalColor;
+
+    public String getFirstEventNonCriticalColor(){
+        return this.firstEventNonCriticalColor = getElementCssValue(firstEventNonCritical,"background-color");
+    }
+
+    @FindBy(xpath = "(//a[@class='eventlist__event eventlist__event--critical ng-star-inserted'])[1]")
+    private WebElement firstCriticalEvent;
+
+    public String firstEventCriticalColor;
+
+    public String getFirstEventCriticalColor(){
+        return this.firstEventCriticalColor = getElementCssValue(firstCriticalEvent,"background-color");
+    }
+
+    public void driverStop(int time){
+        driverSleep(time);
     }
 }

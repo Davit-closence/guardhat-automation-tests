@@ -36,8 +36,20 @@ public class WorkersPage extends BasePage {
     })
     private List<WebElement> deviceStatusOptions;
 
-    public void selectDeviceStatusOption(String text) {
+    public void selectDeviceStatusDropDown() {
         click(deviceStatusDropDown);
+    }
+
+    @FindBy(xpath = "//mat-progress-bar[@role='progressbar']")
+    private WebElement progressBar;
+
+    public boolean isNotDisplayedProgressBar(){
+        WaitHelper.getWait().waitForElementToBeVisible(By.xpath("//mat-progress-bar[@role='progressbar']"));
+        WaitHelper.getWait().waitForElementToBeInVisible(By.xpath("//mat-progress-bar[@role='progressbar']"));
+        return isNotDisplayed(progressBar);
+    }
+
+    public void selectDeviceStatusOption(String text) {
         for (WebElement deviceStatusOption : deviceStatusOptions) {
             if (getElementText(deviceStatusOption).equals(text)) {
                 click(deviceStatusOption);
@@ -52,6 +64,7 @@ public class WorkersPage extends BasePage {
     public String statusText;
 
     public String getDeviceStatusText() {
+//        driverSleep(1500);
         return this.statusText = getElementText(deviceStatusText);
     }
 
@@ -82,6 +95,13 @@ public class WorkersPage extends BasePage {
         click(trackBtn);
     }
 
+    @FindBy(xpath = "//button[text()='T']")
+    private WebElement tBtn;
+
+    public void selectTBtn(){
+        click(tBtn);
+    }
+
     @FindBy(xpath = "//text[@class='tracker_mode']")
     private WebElement nowFollowingText;
 
@@ -91,6 +111,7 @@ public class WorkersPage extends BasePage {
 
     @FindBy(xpath = "//*[contains(text(),' Stop Tracking ')]")
     private WebElement stopTrackerBtn;
+
 
     public void selectStopTrackerBtn() {
         click(stopTrackerBtn);
@@ -105,6 +126,13 @@ public class WorkersPage extends BasePage {
 
     public boolean isDisplayedSensorReadingsText() {
         return isDisplayed(sensorReadingsText);
+    }
+
+    @FindBy(xpath = "//div[@class='worker__location ng-star-inserted']")
+    private WebElement locationDetails;
+
+    public boolean isDisplayedLocationDetails(){
+        return isDisplayed(locationDetails);
     }
 
     @FindBy(xpath = "//*[contains(text(),' Close ')]")
@@ -184,11 +212,26 @@ public class WorkersPage extends BasePage {
     public String deviceCountBeforeRefresh;
 
     public String getDeviceCountAfterRefresh() {
+        WaitHelper.getWait().waitForElementToBeVisible
+                (By.xpath("(//span[text()='MIA'])[1]"));
         return this.deviceCountAfterRefresh = getElementText(deviceCount);
     }
 
     public String getDeviceCountBeforeRefresh() {
+        driverSleep(1000);
         return this.deviceCountBeforeRefresh = getElementText(deviceCount);
+    }
+
+    public String activeDeviceCountAfterRefresh;
+    public String activeDeviceCountBeforeRefresh;
+
+    public String getActiveDeviceCountAfterRefresh() {
+        return this.activeDeviceCountAfterRefresh = getElementText(deviceCount);
+    }
+
+    public String getActiveDeviceCountBeforeRefresh() {
+        driverSleep(1000);
+        return this.activeDeviceCountBeforeRefresh = getElementText(deviceCount);
     }
 
 

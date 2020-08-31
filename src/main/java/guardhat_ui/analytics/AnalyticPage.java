@@ -98,6 +98,13 @@ public class AnalyticPage extends BasePage {
         click(sensorReadingsBtn);
     }
 
+    @FindBy(xpath = "//div[@app-sensor-reading]")
+    private WebElement sensorSelectedEl;
+
+    public boolean isDisplayedSensorSelectedEl(){
+        return isDisplayed(sensorSelectedEl);
+    }
+
 
     @FindBy(xpath = "//a[text()='Proximity Report']")
     private WebElement proximityReportBtn;

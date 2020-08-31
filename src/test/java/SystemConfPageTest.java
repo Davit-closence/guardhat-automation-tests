@@ -36,4 +36,58 @@ public class SystemConfPageTest extends BaseTest {
         Assert.assertEquals(systemConfPage.UWBNumber,"50","UWB is not equal");
         Assert.assertEquals(systemConfPage.GPSNumber,"200","GPS is not equal");
     }
+
+    @Test
+    public void verifySystemConfUserTrackerCheckboxFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        SystemConfPage systemConfPage = new SystemConfPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        systemConfPage.selectAdministrationBtn();
+        systemConfPage.selectMyProfileDropDown();
+        systemConfPage.selectUserManagerOption();
+        systemConfPage.selectUserTrackerCheckbox();
+        systemConfPage.selectSaveBtn();
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        systemConfPage.getUserTrackerCheckboxAttribute();
+        Assert.assertEquals(systemConfPage.userTrackerCheckboxAttribute,systemConfPage.ngDirty,"Check uncheck attribute is not equal");
+        systemConfPage.selectUserTrackerCheckbox();
+        systemConfPage.selectSaveBtn();
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+    }
+
+    @Test
+    public void verifySystemConfDeviceStyleCheckboxFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        SystemConfPage systemConfPage = new SystemConfPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        systemConfPage.selectAdministrationBtn();
+        systemConfPage.selectMyProfileDropDown();
+        systemConfPage.selectUserManagerOption();
+        systemConfPage.selectDeviceStyleCheckbox();
+        systemConfPage.selectSaveBtn();
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        systemConfPage.getDeviceStyleCheckboxAttribute();
+        Assert.assertEquals(systemConfPage.deviceStyleCheckboxAttribute,systemConfPage.ngDirty,"Check uncheck attribute is not equal");
+        systemConfPage.selectDeviceStyleCheckbox();
+        systemConfPage.selectSaveBtn();
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+    }
+
+    @Test
+    public void verifySystemConfInfoMessageCheckboxFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        SystemConfPage systemConfPage = new SystemConfPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        systemConfPage.selectAdministrationBtn();
+        systemConfPage.selectMyProfileDropDown();
+        systemConfPage.selectUserManagerOption();
+        systemConfPage.selectShowInfoMessagesCheckbox();
+        systemConfPage.selectSaveBtn();
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        systemConfPage.getShowInfoMessagesCheckboxAttribute();
+        Assert.assertEquals(systemConfPage.showInfoMessagesCheckboxAttribute,systemConfPage.ngDirty,"Check uncheck attribute is not equal");
+        systemConfPage.selectShowInfoMessagesCheckbox();
+        systemConfPage.selectSaveBtn();
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+    }
 }

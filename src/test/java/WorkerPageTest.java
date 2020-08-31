@@ -14,30 +14,53 @@ public class WorkerPageTest extends BaseTest {
         WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.selectDeviceStatusDropDown();
         workersPage.selectDeviceStatusOption("Offline");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
         workersPage.getDeviceStatusText();
-        Assert.assertEquals(workersPage.statusText, "Offline");
+        Assert.assertEquals(workersPage.statusText, "Offline","Status is not equal");
     }
 
+    // SCC-304
     @Test
     public void verifyWorkersStatusOnline() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.selectDeviceStatusDropDown();
         workersPage.selectDeviceStatusOption("Offline");
+        workersPage.selectDeviceStatusDropDown();
         workersPage.selectDeviceStatusOption("Online");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
         workersPage.getDeviceStatusText();
         Assert.assertEquals(workersPage.statusText, "Online");
     }
 
-    // under SCC-304
+    // SCC-305
+    @Test
+    public void verifyWorkersStatusMia() {
+        LoginPage loginPage = new LoginPage();
+        WorkersPage workersPage = new WorkersPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        workersPage.selectDevicesBtn();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.selectDeviceStatusDropDown();
+        workersPage.selectDeviceStatusOption("MIA");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.getStatusArray("MIA");
+        Assert.assertEquals(workersPage.workerStatusText, "MIA");
+    }
+
     @Test
     public void verifyWorkersRefreshFunctionality() {
         LoginPage loginPage = new LoginPage();
         WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
         workersPage.selectReloadBtn();
         Assert.assertTrue(workersPage.isNotDisplayedFirstDeviceIcon(), "Device icon is displayed");
     }
@@ -53,6 +76,21 @@ public class WorkerPageTest extends BaseTest {
         workersPage.selectFirstDeviceIcon();
         workersPage.selectTrackBtn();
         Assert.assertTrue(workersPage.isDisplayedNowFollowingText(), "The following text is not displayed");
+    }
+
+    // SCC-456
+    @Test
+    public void verifyWorkersTrackTBtnFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        WorkersPage workersPage = new WorkersPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        workersPage.selectDevicesBtn();
+        workersPage.selectFirstDeviceIcon();
+        workersPage.selectTrackBtn();
+        Assert.assertTrue(workersPage.isDisplayedNowFollowingText(), "The following text is not displayed");
+        workersPage.selectTBtn();
+        workersPage.selectFirstDeviceIcon();
+        Assert.assertTrue(workersPage.isDisplayedTrackBtn(), "Trace btn does not display");
     }
 
     // SCC-318
@@ -77,6 +115,8 @@ public class WorkerPageTest extends BaseTest {
         WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.selectDeviceStatusDropDown();
         workersPage.selectDeviceStatusOption("No device");
         Assert.assertTrue(workersPage.isNotDisplayedFirstDeviceIcon(), "Device icon is displayed");
     }
@@ -90,6 +130,7 @@ public class WorkerPageTest extends BaseTest {
         workersPage.selectDevicesBtn();
         workersPage.selectFirstDeviceIcon();
         Assert.assertTrue(workersPage.isDisplayedSensorReadingsText(), "Sensor readings text is not display");
+        Assert.assertTrue(workersPage.isDisplayedLocationDetails(),"Location details is not displayed");
     }
 
     // SCC-1689
@@ -117,21 +158,6 @@ public class WorkerPageTest extends BaseTest {
         Assert.assertTrue(workersPage.isNotDisplayedSensorReadingsText(), "Sensor reading text is displayed");
     }
 
-    // SCC-301
-    @Test
-    public void verifyWorkersStatusAll() {
-        LoginPage loginPage = new LoginPage();
-        WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        workersPage.selectDevicesBtn();
-        workersPage.selectDeviceStatusOption("All");
-        workersPage.getStatusArray("Offline");
-        Assert.assertEquals(workersPage.workerStatusText, "Offline");
-//        workersPage.getStatusArray("Online");
-//        Assert.assertEquals(workersPage.workerStatusText, "Online");
-        // in progress
-    }
-
     // SCC-307
     @Test
     public void verifyWorkersGeneralWebElement() {
@@ -145,20 +171,8 @@ public class WorkerPageTest extends BaseTest {
         Assert.assertTrue(workersPage.isDisplayedVideoCallBtn(),"Video call btn is not displayed");
         Assert.assertTrue(workersPage.isDisplayedCallAudioBtn(),"Audio call btn is not displayed");
         Assert.assertTrue(workersPage.isDisplayedTextBtn(),"Send message btn is not displayed");
-        // in progress
     }
 
-    // SCC-305
-    @Test
-    public void verifyWorkersStatusMia() {
-        LoginPage loginPage = new LoginPage();
-        WorkersPage workersPage = new WorkersPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        workersPage.selectDevicesBtn();
-        workersPage.selectDeviceStatusOption("MIA");
-        workersPage.getStatusArray("MIA");
-        Assert.assertEquals(workersPage.workerStatusText, "MIA");
-    }
 
     @Test
     public void verifyWorkersActiveDeviceCount() {
@@ -166,10 +180,12 @@ public class WorkerPageTest extends BaseTest {
         WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
-        workersPage.getDeviceCountAfterRefresh();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.getActiveDeviceCountAfterRefresh();
         workersPage.selectReloadBtn();
-        workersPage.getDeviceCountBeforeRefresh();
-        Assert.assertEquals(workersPage.deviceCountAfterRefresh,workersPage.deviceCountBeforeRefresh,"Device count is not equal");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.getActiveDeviceCountBeforeRefresh();
+        Assert.assertEquals(workersPage.activeDeviceCountAfterRefresh,workersPage.activeDeviceCountBeforeRefresh,"Device count is not equal");
     }
 
     @Test
@@ -178,10 +194,15 @@ public class WorkerPageTest extends BaseTest {
         WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         workersPage.selectDevicesBtn();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        workersPage.selectDeviceStatusDropDown();
         workersPage.selectDeviceStatusOption("MIA");
         workersPage.getDeviceCountAfterRefresh();
+        System.out.println(workersPage.deviceCountAfterRefresh);
         workersPage.selectReloadBtn();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
         workersPage.getDeviceCountBeforeRefresh();
+        System.out.println(workersPage.deviceCountBeforeRefresh);
         Assert.assertEquals(workersPage.deviceCountAfterRefresh,workersPage.deviceCountBeforeRefresh,"Device count is not equal");
     }
 

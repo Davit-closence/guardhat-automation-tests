@@ -68,21 +68,21 @@ public class UserManagerTest extends BaseTest {
         managerPage.selectAdministrationBtn();
         managerPage.selectMyProfileDropDown();
         managerPage.selectUserManagerOption();
-        managerPage.createHatUser("sqa12345","sqa12345");
+        managerPage.createHatUser("sqa12345", "sqa12345");
         managerPage.selectCloseBtn();
         managerPage.fillUserSearchField(managerPage.firstNameText + managerPage.lastNameText);
         managerPage.selectFirstIcon();
         managerPage.selectEditBtn();
         managerPage.selectEnableBtn();
         managerPage.selectConfirmBtn();
-        Assert.assertTrue(managerPage.isDisplayedUserEnableMessage(),"Enable Message is not displayed");
+        Assert.assertTrue(managerPage.isDisplayedUserEnableMessage(), "Enable Message is not displayed");
         managerPage.selectDisableBtn();
         managerPage.selectConfirmBtn();
-        Assert.assertTrue(managerPage.isDisplayedUserDisableMessage(),"Disable Message is not displayed");
+        Assert.assertTrue(managerPage.isDisplayedUserDisableMessage(), "Disable Message is not displayed");
     }
 
     @Test
-    public void verifyUserSystemUserConfigurationFunctionality() {
+    public  void verifyUserSystemUserConfigurationFunctionality() {
         LoginPage loginPage = new LoginPage();
         UserManagerPage managerPage = new UserManagerPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
@@ -95,11 +95,42 @@ public class UserManagerTest extends BaseTest {
         managerPage.selectFirstIcon();
         managerPage.selectEditBtn();
         managerPage.selectDeviceUserCheckbox();
-        Assert.assertTrue(managerPage.isDisplayedHatUserCheckbox(),"Hay User checkbox is not displayed");
+        Assert.assertTrue(managerPage.isDisplayedHatUserCheckbox(), "Hay User checkbox is not displayed");
         managerPage.selectHatUserCheckbox();
-        Assert.assertTrue(managerPage.isDisplayedDeviceUserCheckbox(),"Device checkbox is not displayed");
+        Assert.assertTrue(managerPage.isDisplayedDeviceUserCheckbox(), "Device checkbox is not displayed");
         managerPage.selectSaveBtn();
         managerPage.selectConfirmBtn();
-        Assert.assertTrue(managerPage.isDisplayedUpdateMessage(),"Update message is not displayed");
+        Assert.assertTrue(managerPage.isDisplayedUpdateMessage(), "Update message is not displayed");
+    }
+
+    @Test
+    public void verifyUserEditNameCredentialFunctionality() {
+        LoginPage loginPage = new LoginPage();
+        UserManagerPage managerPage = new UserManagerPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        managerPage.selectAdministrationBtn();
+        managerPage.selectMyProfileDropDown();
+        managerPage.selectUserManagerOption();
+        managerPage.createHatUser("sqa12345", "sqa12345");
+        managerPage.selectCloseBtn();
+        managerPage.fillUserSearchField(managerPage.firstNameText + " " + managerPage.lastNameText);
+        managerPage.selectFirstIcon();
+        managerPage.selectEditBtn();
+        managerPage.fillFirstNameField();
+        managerPage.getBeforeFirstNameText();
+        managerPage.fillLastNameField();
+        managerPage.getBeforeLastNameText();
+        managerPage.selectSaveBtn();
+        managerPage.selectConfirmBtn();
+        Assert.assertTrue(managerPage.isDisplayedUpdateMessage(), "Update message is not displayed");
+        managerPage.reloadPage();
+        managerPage.fillUserSearchField(managerPage.beforeFirstNameText + " " + managerPage.beforeLastNameText);
+        managerPage.selectFirstIcon();
+        Assert.assertTrue(managerPage.isDisplayedPanelPrimary(),"Panel primary class is not displayed");
+        managerPage.getAfterFirstNameText();
+        managerPage.getAfterLastNameText();
+        Assert.assertNotEquals(managerPage.firstNameText, managerPage.afterFirstNameText, "First Name is equal");
+        Assert.assertNotEquals(managerPage.lastNameText, managerPage.beforeLastNameText, "Last name text is equal");
+        // need to improve
     }
 }

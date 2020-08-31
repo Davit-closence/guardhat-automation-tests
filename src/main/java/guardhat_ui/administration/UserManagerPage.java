@@ -1,13 +1,11 @@
 package guardhat_ui.administration;
 
-import com.sun.tools.example.debug.expr.ExpressionParser;
 import general_setup.BasePage;
 import general_setup.WaitHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
-import org.testng.annotations.Test;
 
 import java.util.List;
 
@@ -59,6 +57,27 @@ public class UserManagerPage extends BasePage {
 
     public String firstNameText;
     public String lastNameText;
+    public String afterFirstNameText;
+    public String afterLastNameText;
+    public String beforeFirstNameText;
+    public String beforeLastNameText;
+
+    public String getBeforeFirstNameText() {
+        return this.beforeFirstNameText = getElementValue(firstNameField);
+    }
+
+    public String getBeforeLastNameText() {
+        return this.beforeLastNameText = getElementValue(lastNameField);
+    }
+
+    public String getAfterFirstNameText() {
+        return this.afterFirstNameText = getElementText(firstNameField);
+    }
+
+    public String getAfterLastNameText() {
+        return this.afterLastNameText = getElementText(lastNameField);
+    }
+
 
     public String getFirstNameText() {
         return this.firstNameText = getElementValue(firstNameField);
@@ -66,6 +85,10 @@ public class UserManagerPage extends BasePage {
 
     public String getLastNameText() {
         return this.lastNameText = getElementValue(lastNameField);
+    }
+
+    public void reloadPage(){
+        driver.navigate().refresh();
     }
 
     @FindBy(xpath = "//input[@formcontrolname='lastName']")
@@ -367,7 +390,7 @@ public class UserManagerPage extends BasePage {
     }
 
 
-    public void createHatUser(String sipPass,String confirmSipPass) {
+    public void createHatUser(String sipPass, String confirmSipPass) {
         selectAddUserBtn();
         fillFirstNameField();
         getFirstNameText();
@@ -431,7 +454,7 @@ public class UserManagerPage extends BasePage {
 
     public String userName;
 
-    public String getUserName(){
+    public String getUserName() {
         return this.userName = getElementValue(userNameField);
     }
 
@@ -473,29 +496,29 @@ public class UserManagerPage extends BasePage {
     @FindBy(xpath = "//span[text()='Set user as a hat user']")
     private WebElement hatUserCheckbox;
 
-    public void selectHatUserCheckbox(){
+    public void selectHatUserCheckbox() {
         click(hatUserCheckbox);
     }
 
     @FindBy(xpath = "//span[text()='Device User']")
     private WebElement deviceUserCheckbox;
 
-    public boolean isDisplayedDeviceUserCheckbox(){
+    public boolean isDisplayedDeviceUserCheckbox() {
         return isDisplayed(deviceUserCheckbox);
     }
 
-    public void selectDeviceUserCheckbox(){
+    public void selectDeviceUserCheckbox() {
         click(deviceUserCheckbox);
     }
 
-    public boolean isDisplayedHatUserCheckbox(){
+    public boolean isDisplayedHatUserCheckbox() {
         return isDisplayed(hatUserCheckbox);
     }
 
     @FindBy(xpath = "//*[contains(text(),' Save ')]")
     private WebElement saveBtn;
 
-    public void selectSaveBtn(){
+    public void selectSaveBtn() {
         click(saveBtn);
     }
 
@@ -504,12 +527,14 @@ public class UserManagerPage extends BasePage {
 
     public void fillUserSearchField(String text) {
         type(userSearchField, text);
+        driverSleep(1000);
     }
 
     @FindBy(xpath = "(//div[@class='c-listview__icon'])[1]")
     private WebElement firstIcon;
 
     public void selectFirstIcon() {
+        driverSleep(1000);
         click(firstIcon);
     }
 
@@ -537,7 +562,7 @@ public class UserManagerPage extends BasePage {
     @FindBy(xpath = "//p[contains(text(),'has been updated')]")
     private WebElement updateMessage;
 
-    public boolean isDisplayedUpdateMessage(){
+    public boolean isDisplayedUpdateMessage() {
         return isDisplayed(updateMessage);
     }
 
@@ -560,6 +585,14 @@ public class UserManagerPage extends BasePage {
 
     public void selectCloseBtn() {
         click(closeBtn);
+    }
+
+    @FindBy(xpath = "//div[@class='panel__primary']")
+    private WebElement panelPrimary;
+
+    public boolean isDisplayedPanelPrimary(){
+        driverSleep(1000);
+        return isDisplayed(panelPrimary);
     }
 
 }

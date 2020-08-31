@@ -1,6 +1,8 @@
 package guardhat_ui.administration;
 
 import general_setup.BasePage;
+import general_setup.WaitHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -38,6 +40,8 @@ public class DeviceManagerPage extends BasePage {
 
     public void selectTypeDropdown() {
         driverSleep(3000);
+        WaitHelper.getWait().waitForElementToBeVisible
+                (By.xpath("(//a[@class='c-listview__result ng-star-inserted'])[1]"));
         click(typeDropdown);
     }
 
@@ -72,6 +76,12 @@ public class DeviceManagerPage extends BasePage {
                 + genNumber(8000, 1000) + "e" + genNumber(89, 10));
     }
 
+    public String guidText;
+
+    public String getGuidText() {
+        return this.guidText = getElementValue(guidField);
+    }
+
     @FindBy(xpath = "//input[@formcontrolname='tagAddressControl']")
     private WebElement tagAddressField;
 
@@ -93,5 +103,113 @@ public class DeviceManagerPage extends BasePage {
         return String.valueOf(number);
     }
 
+    @FindBy(xpath = "//p[contains(text(),'New Device has been added')]")
+    private WebElement deviceAddMessage;
+
+    public boolean isDisplayedDeviceAddMessage() {
+        return isDisplayed(deviceAddMessage);
+    }
+
+    public void createDevice(String typeOption) {
+        selectAddDeviceBtn();
+        selectTypeDropdown();
+        selectTypeOption(typeOption);
+        fillNameField();
+        fillGuidField();
+        getGuidText();
+        fillTagAddressField();
+        fillSerialNumberField();
+    }
+
+    @FindBy(xpath = "//input[@type='text']")
+    private WebElement deviceSearchField;
+
+    public void fillDeviceSearchField(String deviceText) {
+        driverSleep(1000);
+        type(deviceSearchField, deviceText);
+    }
+
+    public void reloadBrowser() {
+        driver.navigate().refresh();
+        driverSleep(1000);
+    }
+
+    @FindBy(xpath = "(//a[@class='c-listview__result ng-star-inserted'])[1]")
+    private WebElement firstDevice;
+
+    public void selectFirstDevice() {
+        click(firstDevice);
+    }
+
+    public String afterTagText;
+    public String beforeTagText;
+
+    public String getAfterTagText() {
+        driverSleep(1000);
+        return this.afterTagText = getElementValue(tagAddressField);
+    }
+
+    public String getBeforeTagText() {
+        return this.beforeTagText = getElementText(tagAddressField);
+    }
+
+    @FindBy(xpath = "//p[contains(text(),'Device has been modified')]")
+    private WebElement deviceUpdateMessage;
+
+    public boolean isDisplayedDeviceUpdateMessage() {
+        return isDisplayed(deviceUpdateMessage);
+    }
+
+    public void stopDriver(int number) {
+        WaitHelper.getWait().waitForElementToBeVisible
+                (By.xpath("//input[@formcontrolname='tagAddressControl']"));
+        driverSleep(number);
+    }
+
+    @FindBy(xpath = "(//a[@class='c-listview__result'])[1]")
+    private WebElement searchedDevice;
+
+    public void selectSearchedDevice() {
+        driverSleep(1000);
+        click(searchedDevice);
+    }
+
+    @FindBy(xpath = "//a[text()=' Disable ']")
+    private WebElement disableBtn;
+
+    public void selectDisableBtn() {
+        click(disableBtn);
+    }
+
+    public boolean isDisplayedDisableBtn() {
+        return isDisplayed(disableBtn);
+    }
+
+    @FindBy(xpath = "//a[text()=' Enable ']")
+    private WebElement enableBtn;
+
+    public void selectEnableBtn() {
+        click(enableBtn);
+    }
+
+    public boolean isDisplayedEnableBtn() {
+        return isDisplayed(enableBtn);
+    }
+
+
+    @FindBy(xpath = "//p[contains(text(),'Device has been enabled')]")
+    private WebElement deviceEnableMessage;
+
+    public boolean isDisplayedDeviceEnableMessage() {
+        return isDisplayed(deviceEnableMessage);
+    }
+
+
+    @FindBy(xpath = "//p[contains(text(),'Device has been disabled')]")
+    private WebElement deviceDisableMessage;
+
+    public boolean isDisplayedDeviceDisableMessage() {
+        return isDisplayed(deviceDisableMessage);
+    }
 
 }

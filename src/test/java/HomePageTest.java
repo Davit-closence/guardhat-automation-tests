@@ -7,6 +7,21 @@ import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseTest {
 
+    //SCC-442
+    @Test
+    public void verifyHomeActiveMiaCount() {
+        LoginPage loginPage = new LoginPage();
+        HomePage homePage = new HomePage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        homePage.getActDevCountNavBarNumber();
+        homePage.getActDevSummaryNumber();
+        Assert.assertEquals(homePage.actDevCountNavBarNumber,homePage.actDevSummaryNumber,"Active device count is not equal");
+        homePage.getMiaDevCountNavBarNumber();
+        homePage.getMiaDevSummaryNumber();
+        Assert.assertEquals(homePage.miaDevCountNavBarNumber,homePage.miaDevSummaryNumber,"MIA device count is not equal");
+
+    }
+
     //SCC-499
     @Test
     public void verifyHomeActiveBtn() {
@@ -58,6 +73,7 @@ public class HomePageTest extends BaseTest {
         Assert.assertTrue(homePage.isDisplayedNewZoneBtn(),"New Zone btn is not displayed");
     }
 
+    //SCC-439
     @Test
     public void verifyHomeEvacuationBtn() {
         LoginPage loginPage = new LoginPage();

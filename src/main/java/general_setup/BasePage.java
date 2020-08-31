@@ -148,8 +148,9 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
         return formatter.format(date);
     }
 
-    public String getFieldIndex(WebElement element) {
-        return element.getAttribute("index");
+    public String getElementAtt(WebElement element, String attribute) {
+        WaitHelper.getWait().waitForElementToBeVisible(element);
+        return element.getAttribute(attribute);
     }
 
     public Actions getActions() {
@@ -164,5 +165,10 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
 
     public void selectDropDownItemByName(WebElement element, String name) {
         new Select(element).selectByVisibleText(name);
+    }
+
+    public String getElementCssValue(WebElement element,String value){
+        WaitHelper.getWait().waitForElementToBeVisible(element);
+        return element.getCssValue(value);
     }
 }

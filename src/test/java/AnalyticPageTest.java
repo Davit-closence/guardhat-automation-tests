@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class AnalyticPageTest extends BaseTest{
 
-
+//SCC-1542
     @Test
     public void verifyOverViewSectionAppear() {
         LoginPage loginPage = new LoginPage();
@@ -16,6 +16,68 @@ public class AnalyticPageTest extends BaseTest{
         analyticPage.selectAnalyticBtn();
         Assert.assertTrue(analyticPage.isDisplayedAnalyticsBarChart(),"Chart is not displayed");
     }
+
+    @Test
+    public void verifyKpiReportAppear() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        analyticPage.selectAnalyticBtn();
+        analyticPage.selectKpiReport();
+        Assert.assertTrue(analyticPage.isDisplayedFormGroupElement(),"Form group is not displayed");
+        Assert.assertTrue(analyticPage.isDisplayedReportGraph(),"Graph is not displayed");
+    }
+
+    @Test
+    public void verifyZoneReportAppear() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        analyticPage.selectAnalyticBtn();
+        analyticPage.selectZoneReportBtn();
+        Assert.assertTrue(analyticPage.isDisplayedSelectZoneText(),"Zone text is not displayed");
+    }
+
+    @Test
+    public void verifyLocationAuditTrailAppear() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        analyticPage.selectAnalyticBtn();
+        analyticPage.selectAuditTrailReportBtn();
+        Assert.assertTrue(analyticPage.isDisplayedAuditTrailText(),"Audit trail label is not displayed");
+    }
+
+    @Test
+    public void verifyLocationReportAppear() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        analyticPage.selectAnalyticBtn();
+        analyticPage.selectLocationReportBtn();
+        Assert.assertTrue(analyticPage.isDisplayedLocationForText(),"Location for label is not displayed");
+    }
+
+    @Test
+    public void verifySensorReadingsAppear() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        analyticPage.selectAnalyticBtn();
+        analyticPage.selectSensorReadingsBtn();
+        Assert.assertTrue(analyticPage.isDisplayedSensorSelectedEl(),"Sensor element is not displayed");
+    }
+
+    @Test
+    public void verifyProximityReportAppear() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        analyticPage.selectAnalyticBtn();
+        analyticPage.selectProximityReportBtn();
+        Assert.assertTrue(analyticPage.isDisplayedProximityForText(),"Proximity text label is not displayed");
+    }
+    //SCC-1542 $$END$$
 
     @Test
     public void verifyOverViewChartSection() {
@@ -40,18 +102,6 @@ public class AnalyticPageTest extends BaseTest{
         analyticPage.selectSubmitBtn();
         analyticPage.getAnalyticText(" Device powered on ");
         Assert.assertEquals(analyticPage.analyticText," Device powered on "," Device powered on is not equal");
-    }
-
-
-    @Test
-    public void verifyKpiReportAppear() {
-        LoginPage loginPage = new LoginPage();
-        AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        analyticPage.selectAnalyticBtn();
-        analyticPage.selectKpiReport();
-        Assert.assertTrue(analyticPage.isDisplayedFormGroupElement(),"Form group is not displayed");
-        Assert.assertTrue(analyticPage.isDisplayedReportGraph(),"Graph is not displayed");
     }
 
     // SCC-??
@@ -100,55 +150,7 @@ public class AnalyticPageTest extends BaseTest{
         Assert.assertTrue(analyticPage.isDisplayedAverageResolutionTimeNumber(),"Average resolution Numbers is not displayed");
     }
 
-    @Test
-    public void verifyZoneReportAppear() {
-        LoginPage loginPage = new LoginPage();
-        AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        analyticPage.selectAnalyticBtn();
-        analyticPage.selectZoneReportBtn();
-        Assert.assertTrue(analyticPage.isDisplayedSelectZoneText(),"Zone text is not displayed");
-    }
 
-    @Test
-    public void verifyLocationReportAppear() {
-        LoginPage loginPage = new LoginPage();
-        AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        analyticPage.selectAnalyticBtn();
-        analyticPage.selectLocationReportBtn();
-        Assert.assertTrue(analyticPage.isDisplayedLocationForText(),"Location for label is not displayed");
-    }
-
-    @Test
-    public void verifyLocationAuditTrailAppear() {
-        LoginPage loginPage = new LoginPage();
-        AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        analyticPage.selectAnalyticBtn();
-        analyticPage.selectAuditTrailReportBtn();
-        Assert.assertTrue(analyticPage.isDisplayedAuditTrailText(),"Audit trail label is not displayed");
-    }
-
-    @Test
-    public void verifySensorReadingsAppear() {
-        LoginPage loginPage = new LoginPage();
-        AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        analyticPage.selectAnalyticBtn();
-        analyticPage.selectSensorReadingsBtn();
-// in progress
-    }
-
-    @Test
-    public void verifyProximityReportAppear() {
-        LoginPage loginPage = new LoginPage();
-        AnalyticPage analyticPage = new AnalyticPage();
-        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
-        analyticPage.selectAnalyticBtn();
-        analyticPage.selectProximityReportBtn();
-        Assert.assertTrue(analyticPage.isDisplayedProximityForText(),"Proximity text label is not displayed");
-    }
 
 
     // two section in progress

@@ -1,6 +1,8 @@
 package guardhat_ui.administration;
 
 import general_setup.BasePage;
+import general_setup.WaitHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -78,8 +80,49 @@ public class SystemConfPage extends BasePage {
         return isDisplayed(savedReportMessage);
     }
 
-    public void reloadPage(){
+    public void reloadPage() {
         driver.navigate().refresh();
     }
 
+
+    @FindBy(xpath = "//input[@formcontrolname='enableUserTracker']")
+    private WebElement userTrackerCheckbox;
+
+    public String userTrackerCheckboxAttribute;
+
+    public String getUserTrackerCheckboxAttribute() {
+        return this.userTrackerCheckboxAttribute = getElementAtt(userTrackerCheckbox, "class");
+    }
+
+    public void selectUserTrackerCheckbox() {
+        click(userTrackerCheckbox);
+    }
+
+    @FindBy(xpath = "//input[@formcontrolname='enableRoleBasedStyle']")
+    private WebElement deviceStyleCheckbox;
+
+    public String deviceStyleCheckboxAttribute;
+
+    public String getDeviceStyleCheckboxAttribute() {
+        return this.deviceStyleCheckboxAttribute = getElementAtt(deviceStyleCheckbox, "class");
+    }
+
+    public void selectDeviceStyleCheckbox() {
+        click(deviceStyleCheckbox);
+    }
+
+    @FindBy(xpath = "//input[@formcontrolname='showInfoMessages']")
+    private WebElement showInfoMessagesCheckbox;
+
+    public String showInfoMessagesCheckboxAttribute;
+
+    public String getShowInfoMessagesCheckboxAttribute() {
+        return this.showInfoMessagesCheckboxAttribute = getElementAtt(showInfoMessagesCheckbox, "class");
+    }
+
+    public void selectShowInfoMessagesCheckbox() {
+        click(showInfoMessagesCheckbox);
+    }
+
+    public String ngDirty = "checkbox-hidden ng-valid ng-dirty ng-touched";
 }
