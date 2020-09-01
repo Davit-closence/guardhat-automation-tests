@@ -56,7 +56,7 @@ public class GalleryPage extends BasePage {
 
     public void selectMediaOption(String option) {
         for (WebElement mediaOption : mediaOptions) {
-            if (getElementText(mediaOption).equals(option)) {
+            if (getElementAtt(mediaOption,"value").equals(option)) {
                 click(mediaOption);
                 break;
             }

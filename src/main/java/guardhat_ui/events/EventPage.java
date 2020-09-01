@@ -42,7 +42,7 @@ public class EventPage extends BasePage {
 
     public void selectEventStatusOption(String text) {
         for (WebElement eventStatusOption : eventStatusOptions) {
-            if (getElementAtt(eventStatusOption,"value").equals(text)) {
+            if (getElementAtt(eventStatusOption, "value").equals(text)) {
                 click(eventStatusOption);
                 break;
             }
@@ -67,6 +67,10 @@ public class EventPage extends BasePage {
         WaitHelper.getWait().waitForElementToBeInVisible
                 (By.xpath("//div[@type='close']"));
         return isNotDisplayed(closeBtn);
+    }
+
+    public boolean isDisplayedCloseBtn(){
+        return isDisplayed(closeBtn);
     }
 
     @FindBy(xpath = "//a[text()=' Resolve ']")
@@ -115,14 +119,14 @@ public class EventPage extends BasePage {
 
     public String commentsValueAfter;
 
-    public String getCommentsValue(){
+    public String getCommentsValue() {
         return this.commentsValueAfter = getElementValue(textFilledField);
     }
 
     @FindBy(xpath = "//button[text()=' Save comment ']")
     private WebElement saveCommentsBtn;
 
-    public void selectSaveCommentsBtn(){
+    public void selectSaveCommentsBtn() {
         click(saveCommentsBtn);
     }
 
@@ -131,7 +135,7 @@ public class EventPage extends BasePage {
 
     public String commentsValueBefore;
 
-    public String getCommentsValueBefore(){
+    public String getCommentsValueBefore() {
         driverSleep(500);
         return this.commentsValueBefore = getElementText(beforeCommentsText);
     }
@@ -139,17 +143,17 @@ public class EventPage extends BasePage {
     @FindBy(css = ".panel__header-left")
     private WebElement leftPanel;
 
-    public boolean isDisplayedLeftPanel(){
+    public boolean isDisplayedLeftPanel() {
         return isDisplayed(leftPanel);
     }
 
-    public boolean isNotDisplayedLeftPanel(){
+    public boolean isNotDisplayedLeftPanel() {
         WaitHelper.getWait().waitForElementToBeInVisible
                 (By.cssSelector(".panel__header-left"));
         return isNotDisplayed(leftPanel);
     }
 
-    public void refreshBrowser(){
+    public void refreshBrowser() {
         driver.navigate().refresh();
         driverSleep(300);
     }
@@ -159,39 +163,39 @@ public class EventPage extends BasePage {
 
     public String eventText;
 
-    public String getEventText(){
+    public String getEventText() {
         return this.eventText = getElementText(eventTextElement);
     }
 
-    public boolean isEventTextEqual(String text){
-       return this.eventText.contains(text);
+    public boolean isEventTextEqual(String text) {
+        return this.eventText.contains(text);
     }
 
     @FindBy(xpath = "(//*[@class='gh-icon icon-EC602'])[1]")
     private WebElement socialDistanceIcon;
 
-    public boolean isDisplayedSocialDistanceIcon(){
+    public boolean isDisplayedSocialDistanceIcon() {
         return isDisplayed(socialDistanceIcon);
     }
 
     @FindBy(xpath = "(//*[@class='gh-icon icon-EG015'])[1]")
     private WebElement deviceInformationIcon;
 
-    public boolean isDisplayedDeviceInformationIcon(){
+    public boolean isDisplayedDeviceInformationIcon() {
         return isDisplayed(deviceInformationIcon);
     }
 
     @FindBy(xpath = "//textarea")
     private WebElement commentsFieldPopup;
 
-    public void fillCommentsFieldPopup(){
-        type(commentsFieldPopup,currentData());
+    public void fillCommentsFieldPopup() {
+        type(commentsFieldPopup, currentData());
     }
 
     @FindBy(xpath = "//h2[text()='Last five events']")
     private WebElement lastFiveText;
 
-    public boolean isDisplayedLastFiveText(){
+    public boolean isDisplayedLastFiveText() {
         return isDisplayed(lastFiveText);
     }
 
@@ -200,8 +204,8 @@ public class EventPage extends BasePage {
 
     public String firstEventNonCriticalColor;
 
-    public String getFirstEventNonCriticalColor(){
-        return this.firstEventNonCriticalColor = getElementCssValue(firstEventNonCritical,"background-color");
+    public String getFirstEventNonCriticalColor() {
+        return this.firstEventNonCriticalColor = getElementCssValue(firstEventNonCritical, "background-color");
     }
 
     @FindBy(xpath = "(//a[@class='eventlist__event eventlist__event--critical ng-star-inserted'])[1]")
@@ -209,11 +213,50 @@ public class EventPage extends BasePage {
 
     public String firstEventCriticalColor;
 
-    public String getFirstEventCriticalColor(){
-        return this.firstEventCriticalColor = getElementCssValue(firstCriticalEvent,"background-color");
+    public String getFirstEventCriticalColor() {
+        return this.firstEventCriticalColor = getElementCssValue(firstCriticalEvent, "background-color");
     }
 
-    public void driverStop(int time){
+    public void driverStop(int time) {
         driverSleep(time);
     }
+
+    @FindBys({
+            @FindBy(xpath = "//div[contains(@class, 'eventlist__column c-listview__column')]")
+    })
+    private List<WebElement> eventElements;
+
+    public void selectEventElement(String text) {
+        for (WebElement eventElement : eventElements) {
+            if (getElementText(eventElement).equals(text)) {
+                click(eventElement);
+                break;
+            }
+        }
+    }
+
+    @FindBy(xpath = "//h1[@class='header__title']")
+    private WebElement headerTitle;
+
+    public String headerTitleText;
+
+    public String getHeaderTitleText(){
+        return this.headerTitleText = getElementText(headerTitle);
+    }
+
+    @FindBy(xpath = "//div[@type='call-video']")
+    private WebElement videoBtn;
+
+    public boolean isDisplayedVideoBtn(){
+        return isNotDisplayed(videoBtn);
+    }
+
+    @FindBy(xpath = "//div[@type='callStart']")
+    private WebElement audioBtn;
+
+    public boolean isDisplayedAudioBtn(){
+        return isNotDisplayed(audioBtn);
+    }
+
+
 }

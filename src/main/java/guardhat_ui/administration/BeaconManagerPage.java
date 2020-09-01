@@ -42,6 +42,8 @@ public class BeaconManagerPage extends BasePage {
     private WebElement addBeaconBtn;
 
     public void selectAddBeaconBtn() {
+        WaitHelper.getWait().waitForElementToBeVisible
+                (By.xpath("(//img[@alt='enabled'])[1]"));
         click(addBeaconBtn);
     }
 
@@ -52,7 +54,7 @@ public class BeaconManagerPage extends BasePage {
     private WebElement typeDropDownArrow;
 
     public void selectTypeDropDown() {
-        driverSleep(3000);
+        driverSleep(4000);
 //        WaitHelper.getWait().waitForElementToBeClickable
 //                (By.cssSelector(".mat-select-trigger .mat-select-arrow-wrapper"));
         click(typeDropDown);
@@ -123,7 +125,7 @@ public class BeaconManagerPage extends BasePage {
         type(altitudeField, currentData());
     }
 
-    @FindBy(xpath = "//*[@class='gh-icon icon-Plus']")
+    @FindBy(xpath = "//*[text()=' Save ']")
     private WebElement saveBtn;
 
     public void selectSaveBtn() {

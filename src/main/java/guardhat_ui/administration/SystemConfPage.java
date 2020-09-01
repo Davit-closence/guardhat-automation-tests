@@ -65,7 +65,7 @@ public class SystemConfPage extends BasePage {
         return this.GPSNumber = getElementValue(usingGPSField);
     }
 
-    @FindBy(xpath = "//*[@class='gh-icon icon-Plus']")
+    @FindBy(xpath = "//*[text()=' Save ']")
     private WebElement saveBtn;
 
     public void selectSaveBtn() {

@@ -125,6 +125,7 @@ public class AnalyticPageTest extends BaseTest{
         Assert.assertTrue(analyticPage.isDisplayedNonCriticalEventsNumber(),"Non Critical Numbers is not displayed");
     }
 
+    // SCC-614
     @Test
     public void verifyKpiReportChangeSiteFunctionality() {
         LoginPage loginPage = new LoginPage();
@@ -150,7 +151,17 @@ public class AnalyticPageTest extends BaseTest{
         Assert.assertTrue(analyticPage.isDisplayedAverageResolutionTimeNumber(),"Average resolution Numbers is not displayed");
     }
 
-
+    // SCC-356
+    @Test
+    public void verifyOverViewSectionResolveEvent() {
+        LoginPage loginPage = new LoginPage();
+        AnalyticPage analyticPage = new AnalyticPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        analyticPage.selectAnalyticBtn();
+        Assert.assertTrue(analyticPage.isDisplayedAnalyticsBarChart(),"Chart is not displayed");
+        analyticPage.selectFirstEvent();
+        Assert.assertTrue(analyticPage.isDisplayedResolvedText(),"Resolved test is not displayed");
+    }
 
 
     // two section in progress

@@ -27,6 +27,20 @@ public class AnalyticPage extends BasePage {
         click(analyticBtn);
     }
 
+    @FindBy(xpath = "(//a[contains(@class, 'eventlist__event eventlist__event--critical')])[1]")
+    private WebElement firstEvent;
+
+    public void selectFirstEvent() {
+        click(firstEvent);
+    }
+
+    @FindBy(xpath = "//div[text()=' Resolved']")
+    private WebElement resolvedText;
+
+    public boolean isDisplayedResolvedText(){
+        return isDisplayed(resolvedText);
+    }
+
     @FindBy(xpath = "//div[@type='analytics']")
     private WebElement analyticsBarChart;
 
@@ -101,7 +115,7 @@ public class AnalyticPage extends BasePage {
     @FindBy(xpath = "//div[@app-sensor-reading]")
     private WebElement sensorSelectedEl;
 
-    public boolean isDisplayedSensorSelectedEl(){
+    public boolean isDisplayedSensorSelectedEl() {
         return isDisplayed(sensorSelectedEl);
     }
 
@@ -266,7 +280,7 @@ public class AnalyticPage extends BasePage {
     @FindBy(xpath = "(//*[contains(@transform, 'translate')])[1]")
     private WebElement reportGraph;
 
-    public boolean isDisplayedReportGraph(){
+    public boolean isDisplayedReportGraph() {
         return isDisplayed(reportGraph);
     }
 }

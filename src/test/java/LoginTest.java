@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest{
 
+    //SCC-494  SCC-980
     @Test
     public void verifyLoginFunctionality(){
         LoginPage loginPage = new LoginPage();
@@ -16,6 +17,7 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue(loginPage.isDisplayedLogoutBtn(),"Logout btn is not displayed");
     }
 
+    //SCC-260
     @Test
     public void verifyLoginWithInvalidUserName(){
         LoginPage loginPage = new LoginPage();
@@ -26,6 +28,7 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue(loginPage.isDisplayedErrorMessage(),"Error message is not displayed");
     }
 
+    //SCC-259
     @Test
     public void verifyLoginWithInvalidPass(){
         LoginPage loginPage = new LoginPage();

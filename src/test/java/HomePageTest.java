@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseTest {
 
-    //SCC-442
+    //SCC-442  SCC-261
     @Test
     public void verifyHomeActiveMiaCount() {
         LoginPage loginPage = new LoginPage();
@@ -73,7 +73,7 @@ public class HomePageTest extends BaseTest {
         Assert.assertTrue(homePage.isDisplayedNewZoneBtn(),"New Zone btn is not displayed");
     }
 
-    //SCC-439
+    // SCC-439
     @Test
     public void verifyHomeEvacuationBtn() {
         LoginPage loginPage = new LoginPage();

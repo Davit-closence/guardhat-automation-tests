@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 public class EventPageTest extends BaseTest {
 
+    // SCC-290
     @Test
     public void verifyEventsCloseBtnFunctionality() {
         LoginPage loginPage = new LoginPage();
@@ -19,7 +20,7 @@ public class EventPageTest extends BaseTest {
         Assert.assertTrue(eventPage.isNotDisplayedCloseBtn(), "Close btn is Displayed");
     }
 
-    // SCC-1022
+    // SCC-1022  SCC-271
     @Test
     public void verifyEventsResolveBtnFunctionality() {
         LoginPage loginPage = new LoginPage();
@@ -81,6 +82,7 @@ public class EventPageTest extends BaseTest {
     }
 
 
+    // SCC-299
     @Test
     public void verifyEventsDeselectFunctionality() {
         LoginPage loginPage = new LoginPage();
@@ -93,6 +95,7 @@ public class EventPageTest extends BaseTest {
         Assert.assertTrue(eventPage.isNotDisplayedLeftPanel(), "Left panel is displayed");
     }
 
+    // SCC-443
     @Test
     public void verifyEventsRefreshBrowserFunctionality() {
         LoginPage loginPage = new LoginPage();
@@ -105,6 +108,7 @@ public class EventPageTest extends BaseTest {
         Assert.assertTrue(eventPage.isDisplayedLeftPanel(), "Left panel is not displayed");
     }
 
+    //SCC-265
     @Test
     public void verifyEventsCriticalOptionFunctionality() {
         LoginPage loginPage = new LoginPage();
@@ -126,7 +130,10 @@ public class EventPageTest extends BaseTest {
         eventPage.selectEventStatusOption("noncritical");
         Assert.assertTrue(eventPage.isDisplayedDeviceInformationIcon(),"Device information icon is not displayed");
     }
+    // SCC-265 $$END$$$
 
+
+    // SCC-289
     @Test
     public void verifyEventsPostCommentBeforeResolve() {
         LoginPage loginPage = new LoginPage();
@@ -141,5 +148,23 @@ public class EventPageTest extends BaseTest {
         eventPage.selectConfirmPopupBtn();
         Assert.assertTrue(eventPage.isDisplayedResolvedElement(), "Resolved element is not displayed");
         Assert.assertTrue(eventPage.isNotDisplayedResolvedElement(), "Resolved element is displayed");
+    }
+
+    // SCC-266
+    @Test
+    public void verifyEventsNonCriticalGeneralElements() {
+        LoginPage loginPage = new LoginPage();
+        EventPage eventPage = new EventPage();
+        loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
+        eventPage.selectEventBtn();
+        eventPage.selectEventStatusDropDown();
+        eventPage.selectEventStatusOption("noncritical");
+        Assert.assertTrue(eventPage.isDisplayedDeviceInformationIcon(),"Device information icon is not displayed");
+        eventPage.selectEventElement("Device powered on");
+        eventPage.getHeaderTitleText();
+        Assert.assertEquals(eventPage.headerTitleText,"Device powered on","Header text is not equal");
+        Assert.assertTrue(eventPage.isDisplayedVideoBtn(),"Video icon is not displayed");
+        Assert.assertTrue(eventPage.isDisplayedAudioBtn(),"Audio icon is not displayed");
+        Assert.assertTrue(eventPage.isDisplayedCloseBtn(),"Close icon is not displayed");
     }
 }

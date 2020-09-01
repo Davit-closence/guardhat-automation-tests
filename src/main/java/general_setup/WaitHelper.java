@@ -12,22 +12,22 @@ public class WaitHelper {
     }
 
     public void waitForElementToBeVisible(By location) {
-        new WebDriverWait(DriverHelper.get().getDriver(), 30).
+        new WebDriverWait(DriverHelper.get().getDriver(), 60).
                 until(ExpectedConditions.visibilityOfElementLocated(location));
     }
 
     public void waitForElementToBeClickable(By location) {
-        new WebDriverWait(DriverHelper.get().getDriver(), 30).
+        new WebDriverWait(DriverHelper.get().getDriver(), 60).
                 until(ExpectedConditions.elementToBeClickable(location));
     }
 
     public void waitForElementToBeInVisible(By location) {
-        new WebDriverWait(DriverHelper.get().getDriver(), 30)
+        new WebDriverWait(DriverHelper.get().getDriver(), 60)
                 .until(ExpectedConditions.invisibilityOfElementLocated(location));
     }
 
     public void waitForElementToBeVisible(WebElement element) {
-        new WebDriverWait(DriverHelper.get().getDriver(), 30)
+        new WebDriverWait(DriverHelper.get().getDriver(), 60)
                 .until(ExpectedConditions.visibilityOf(element));
     }
 

@@ -1,6 +1,7 @@
 import general_setup.BasePage;
 import guardhat_ui.LoginPage;
 import guardhat_ui.administration.UserManagerPage;
+import guardhat_ui.devices.WorkersPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,10 +11,12 @@ public class UserManagerTest extends BaseTest {
     public void verifyAddUserFunctionality() {
         LoginPage loginPage = new LoginPage();
         UserManagerPage managerPage = new UserManagerPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         managerPage.selectAdministrationBtn();
         managerPage.selectMyProfileDropDown();
         managerPage.selectUserManagerOption();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         managerPage.selectAddUserBtn();
         managerPage.fillFirstNameField();
         managerPage.fillLastNameField();
@@ -36,6 +39,7 @@ public class UserManagerTest extends BaseTest {
         Assert.assertTrue(managerPage.isDisplayedUserAddMessage(), "User add message does not display");
     }
 
+    // SCC-1613
     @Test
     public void verifyUserLanguageFunctionality() {
         LoginPage loginPage = new LoginPage();
@@ -50,6 +54,7 @@ public class UserManagerTest extends BaseTest {
         Assert.assertTrue(managerPage.isDisplayedEnChangePassBtn(), "Change pass btn is not english language");
     }
 
+    // SCC-398
     @Test
     public void verifyMyProfileText() {
         LoginPage loginPage = new LoginPage();
@@ -60,17 +65,21 @@ public class UserManagerTest extends BaseTest {
         Assert.assertTrue(managerPage.isDisplayedUserCredentialText(), "User credential text is not displayed");
     }
 
+
+    // SCC-403
     @Test
     public void verifyUserEnableDisableFunctionality() {
         LoginPage loginPage = new LoginPage();
         UserManagerPage managerPage = new UserManagerPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         managerPage.selectAdministrationBtn();
         managerPage.selectMyProfileDropDown();
         managerPage.selectUserManagerOption();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         managerPage.createHatUser("sqa12345", "sqa12345");
         managerPage.selectCloseBtn();
-        managerPage.fillUserSearchField(managerPage.firstNameText + managerPage.lastNameText);
+        managerPage.fillUserSearchField(managerPage.firstNameText + " " + managerPage.lastNameText);
         managerPage.selectFirstIcon();
         managerPage.selectEditBtn();
         managerPage.selectEnableBtn();
@@ -81,17 +90,20 @@ public class UserManagerTest extends BaseTest {
         Assert.assertTrue(managerPage.isDisplayedUserDisableMessage(), "Disable Message is not displayed");
     }
 
+    // SCC-1612   fix
     @Test
-    public  void verifyUserSystemUserConfigurationFunctionality() {
+    public void verifyUserSystemUserConfigurationFunctionality() {
         LoginPage loginPage = new LoginPage();
         UserManagerPage managerPage = new UserManagerPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         managerPage.selectAdministrationBtn();
         managerPage.selectMyProfileDropDown();
         managerPage.selectUserManagerOption();
-        managerPage.createSystemUser("user");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
+        managerPage.createHatUser("sqa12345", "sqa12345");
         managerPage.selectCloseBtn();
-        managerPage.fillUserSearchField(managerPage.firstNameText + managerPage.lastNameText);
+        managerPage.fillUserSearchField(managerPage.firstNameText + " " + managerPage.lastNameText);
         managerPage.selectFirstIcon();
         managerPage.selectEditBtn();
         managerPage.selectDeviceUserCheckbox();
@@ -107,10 +119,12 @@ public class UserManagerTest extends BaseTest {
     public void verifyUserEditNameCredentialFunctionality() {
         LoginPage loginPage = new LoginPage();
         UserManagerPage managerPage = new UserManagerPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         managerPage.selectAdministrationBtn();
         managerPage.selectMyProfileDropDown();
         managerPage.selectUserManagerOption();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         managerPage.createHatUser("sqa12345", "sqa12345");
         managerPage.selectCloseBtn();
         managerPage.fillUserSearchField(managerPage.firstNameText + " " + managerPage.lastNameText);
@@ -126,11 +140,10 @@ public class UserManagerTest extends BaseTest {
         managerPage.reloadPage();
         managerPage.fillUserSearchField(managerPage.beforeFirstNameText + " " + managerPage.beforeLastNameText);
         managerPage.selectFirstIcon();
-        Assert.assertTrue(managerPage.isDisplayedPanelPrimary(),"Panel primary class is not displayed");
+        Assert.assertTrue(managerPage.isDisplayedPanelPrimary(), "Panel primary class is not displayed");
         managerPage.getAfterFirstNameText();
         managerPage.getAfterLastNameText();
         Assert.assertNotEquals(managerPage.firstNameText, managerPage.afterFirstNameText, "First Name is equal");
         Assert.assertNotEquals(managerPage.lastNameText, managerPage.beforeLastNameText, "Last name text is equal");
-        // need to improve
     }
 }

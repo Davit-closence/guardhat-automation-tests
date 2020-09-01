@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 public class AboutPageTest extends BaseTest {
 
+    // SCC-1185
     @Test
     public void verifyAboutText() {
         LoginPage loginPage = new LoginPage();
@@ -17,6 +18,5 @@ public class AboutPageTest extends BaseTest {
         managerPage.selectMyProfileDropDown();
         aboutPage.selectAboutOption();
         Assert.assertTrue(aboutPage.isDisplayedAboutTextVersion(),"The text of about is not displayed");
-        // in progress
     }
 }
