@@ -2,21 +2,21 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite-3" verbose="1">
     <listeners>
-        <listener class-name="general_setup.listeners.RetryListener"/>
+        <listener class-name="guardhat_ui.general_setup.listeners.RetryListener"/>
     </listeners>
     <test name="all-packages" parallel="methods" thread-count="1">
         <classes>
-            <class name="HomePageTest">
+            <class name="ui.HomePageTest">
                 <methods>
                     <include name="verifyHomeActiveBtn"/>
                 </methods>
             </class>
-            <class name="EventPageTest">
+            <class name="ui.EventPageTest">
                 <methods>
                     <include name="verifyEventsResolveBtnFunctionality"/>
                 </methods>
             </class>
-            <class name="WorkerPageTest">
+            <class name="ui.WorkerPageTest">
                 <methods>
                     <include name="verifyWorkersStopTrackFunctionality"/>
                 </methods>
