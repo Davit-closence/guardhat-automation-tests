@@ -1,5 +1,6 @@
 package ui;
 
+import guardhat_ui.general_setup.jira.JiraTicket;
 import guardhat_ui.general_setup.ui_helper.DriverHelper;
 import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
@@ -12,12 +13,13 @@ import org.testng.IHookable;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class BaseTest implements IHookable {
     private static final Logger LOGGER = Logger.getLogger("projects_tests.ui.BaseTest");
-    private WebDriver driver = DriverHelper.get().getDriver();
+    private final WebDriver driver = DriverHelper.get().getDriver();
+
+
 
     @AfterMethod
     public void tearDown() {
@@ -45,11 +47,11 @@ public class BaseTest implements IHookable {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-//    @AfterMethod
-//    public void sendMessageFailCase(ITestResult result) {
-//        if (ITestResult.FAILURE == result.getStatus()) {
-//            TelegramGroupSender telegramGroupSender = new TelegramGroupSender();
-//            telegramGroupSender.sendMessageToTelegram(result);
-//        }
-//    }
+    @AfterMethod
+    public void sendMessageFailCase(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            JiraTicket.createIssueJira(result, JiraTicket.JIRA_URL, JiraTicket.KEY, "[FAILED] " + result.getMethod().getMethodName(), String.valueOf(result.getThrowable()), JiraTicket.ISSUE_TYPE_BUG);
+        }
+    }
+
 }
