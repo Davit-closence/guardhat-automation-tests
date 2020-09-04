@@ -4,6 +4,8 @@ import okhttp3.*;
 import org.testng.ITestResult;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class JiraTicket {
 
@@ -13,14 +15,19 @@ public class JiraTicket {
     public static final String ISSUE_TYPE_BUG = "Bug";
     public static final String ISSUE_TYPE_TASK = "Task";
     public static final String ISSUE_TYPE_STORY = "Story";
-    public static final  String JIRA_URL = "https://sqaguardhat.atlassian.net/rest/api/3/issue/";
+    public static final String JIRA_URL = "https://sqaguardhat.atlassian.net/rest/api/2/issue/";
 
+    public static String getCURRENT_DATE_TIME() {
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime currentTime = LocalDateTime.now();
+        return dateTimeFormat.format(currentTime);
+    }
 
-    public static void createIssueJira(ITestResult result,String jiraURL, String key, String summary, String description, String issueType) {
+    public static void createIssueJira(ITestResult result, String jiraURL, String key, String summary, String description, String environment, String issueType) {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\"fields\": {\"project\":{\"key\": \"" + key + "\"},\"summary\": \"" + summary + "\",\"description\":{\"type\": \"doc\",\"version\": 1,\"content\":[{\"type\": \"paragraph\",\"content\":[{\"type\":\"text\",\"text\": \"" + description + "\"}]}]},\"issuetype\": {\"name\": \"" + issueType + "\"}}}");
+        RequestBody body = RequestBody.create(mediaType, "{\"fields\":{\"project\":{\"key\": \"" + key + "\"},\"summary\": \"" + summary + "\",\"description\": \"" + description + "\",\"environment\": \"" + environment + "\",\"issuetype\": {\"name\": \"" + issueType + "\"}}}");
         Request request = new Request.Builder()
                 .url(jiraURL)
                 .method("POST", body)

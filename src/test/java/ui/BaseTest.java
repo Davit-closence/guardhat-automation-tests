@@ -20,7 +20,6 @@ public class BaseTest implements IHookable {
     private final WebDriver driver = DriverHelper.get().getDriver();
 
 
-
     @AfterMethod
     public void tearDown() {
         DriverHelper.get().quitDriver(DriverHelper.get().getDriver());
@@ -50,7 +49,10 @@ public class BaseTest implements IHookable {
     @AfterMethod
     public void sendMessageFailCase(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
-            JiraTicket.createIssueJira(result, JiraTicket.JIRA_URL, JiraTicket.KEY, "[FAILED] " + result.getMethod().getMethodName(), String.valueOf(result.getThrowable()), JiraTicket.ISSUE_TYPE_BUG);
+            JiraTicket.createIssueJira(result, JiraTicket.JIRA_URL, JiraTicket.KEY,
+                    "[FAILED] " + result.getMethod().getMethodName(),
+                    JiraTicket.getCURRENT_DATE_TIME() + "   " + String.valueOf(result.getThrowable()),
+                    driver.getCurrentUrl(), JiraTicket.ISSUE_TYPE_BUG);
         }
     }
 

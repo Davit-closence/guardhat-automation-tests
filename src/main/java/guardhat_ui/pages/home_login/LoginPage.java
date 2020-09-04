@@ -1,11 +1,14 @@
 package guardhat_ui.pages.home_login;
 
 import guardhat_ui.general_setup.ui_helper.BasePage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
 public class LoginPage extends BasePage {
+
+    private static final Logger LOGGER = Logger.getLogger("guardhat_ui.pages.home_login.LoginPage");
 
     @Override
     public String getUrl() {
