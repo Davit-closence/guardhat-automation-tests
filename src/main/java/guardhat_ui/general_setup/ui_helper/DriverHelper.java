@@ -57,7 +57,7 @@ public class DriverHelper {
                 switch (BROWSER) {
                     case "chrome":
                         System.setProperty("webdriver.chrome.driver",
-                                "./src/main/resources/drivers/chromedriver-linux-64bit");
+                                "/home/ubuntu/davit/projects/chromedriver");
                         if (Boolean.valueOf(REMOTE)) {
                             driver = initRemoteDriver(DesiredCapabilities.chrome());
                         } else {
