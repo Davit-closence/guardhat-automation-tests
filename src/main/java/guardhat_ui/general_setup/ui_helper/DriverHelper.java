@@ -18,7 +18,7 @@ public class DriverHelper {
 
     public WebDriver driver;
     private static final String BROWSER = System.getProperty("selenium.browser", "chrome");
-    private static final String REMOTE = System.getProperty("selenium.remote", "false");
+    private static final String REMOTE = System.getProperty("selenium.remote", "true");
     private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
     private String OS = System.getProperty("os.name");
 
@@ -57,7 +57,7 @@ public class DriverHelper {
                 switch (BROWSER) {
                     case "chrome":
                         System.setProperty("webdriver.chrome.driver",
-                                "/opt/chromedriver");
+                                "./src/main/resources/drivers/chromedriver-linux-64bit");
                         if (Boolean.valueOf(REMOTE)) {
                             driver = initRemoteDriver(DesiredCapabilities.chrome());
                         } else {

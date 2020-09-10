@@ -2,6 +2,7 @@ package ui;
 
 import guardhat_ui.general_setup.ui_helper.GoogleSheetData;
 import guardhat_ui.pages.home_login.LoginPage;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,6 +21,7 @@ public class LoginTest extends BaseTest {
     }
 
     //SCC-260
+    @Description("This test check error message when filling invalid Username") // for allure report description
     @Test
     public void verifyLoginWithInvalidUserName() {
         LoginPage loginPage = new LoginPage();

@@ -47,7 +47,7 @@ public class BaseTest implements IHookable {
     }
 
     @AfterMethod
-    public void sendMessageFailCase(ITestResult result) {
+    public void createJiraTicketFailCase(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             JiraTicket.createIssueJira(result, JiraTicket.JIRA_URL, JiraTicket.KEY,
                     "[FAILED] " + result.getMethod().getMethodName(),
