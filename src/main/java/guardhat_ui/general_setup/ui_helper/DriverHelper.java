@@ -62,6 +62,7 @@ public class DriverHelper {
                                 "/home/ubuntu/davit/projects/chromedriver");
                         if (Boolean.valueOf(REMOTE)) {
                             driver = initRemoteDriver(DesiredCapabilities.chrome());
+                            driver.manage().window().fullscreen();
                         } else {
 //                            driver = new ChromeDriver();
 //                            driver.manage().deleteAllCookies();
