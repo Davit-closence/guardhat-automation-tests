@@ -19,7 +19,7 @@ public class DriverHelper {
 
     public WebDriver driver;
     private static final String BROWSER = System.getProperty("selenium.browser", "chrome");
-    private static final String REMOTE = System.getProperty("selenium.remote", "false");
+    private static final String REMOTE = System.getProperty("selenium.remote", "true");
 
     private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
     private String OS = System.getProperty("os.name");
@@ -125,7 +125,7 @@ public class DriverHelper {
             capabilities.setCapability("enableVNC", true);
 //            capabilities.setCapability("enableVideo", true);
             capabilities.setCapability("screenResolution", "1920x1080x24");
-            remoteWebDriver = new RemoteWebDriver(new URL("http://192.168.20.107:4444/wd/hub"), capabilities);
+            remoteWebDriver = new RemoteWebDriver(new URL("http://192.168.20.100:4444/wd/hub"), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
