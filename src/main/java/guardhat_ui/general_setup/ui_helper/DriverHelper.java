@@ -1,5 +1,6 @@
 package guardhat_ui.general_setup.ui_helper;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -62,7 +63,7 @@ public class DriverHelper {
                                 "/home/ubuntu/davit/projects/chromedriver");
                         if (Boolean.valueOf(REMOTE)) {
                             driver = initRemoteDriver(DesiredCapabilities.chrome());
-                            driver.manage().window().fullscreen();
+                            driver.manage().window().setSize(new Dimension(1920, 1080));
                         } else {
 //                            driver = new ChromeDriver();
 //                            driver.manage().deleteAllCookies();
