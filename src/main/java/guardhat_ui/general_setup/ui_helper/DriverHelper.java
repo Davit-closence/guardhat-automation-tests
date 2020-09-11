@@ -125,7 +125,7 @@ public class DriverHelper {
             capabilities.setCapability("enableVNC", true);
 //            capabilities.setCapability("enableVideo", true);
             capabilities.setCapability("screenResolution", "1920x1080x24");
-            remoteWebDriver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"), capabilities);
+            remoteWebDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
