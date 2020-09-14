@@ -1,6 +1,7 @@
 package ui;
 
 import guardhat_ui.general_setup.ui_helper.BasePage;
+import guardhat_ui.pages.devices.WorkersPage;
 import guardhat_ui.pages.home_login.LoginPage;
 
 import guardhat_ui.pages.analytics.AnalyticPage;
@@ -95,13 +96,16 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyOverViewDevicePowerOnOption() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
+        workersPage.isNotDisplayedProgressBar();
         analyticPage.selectSiteDropDown();
         analyticPage.selectSiteOption("All");
         analyticPage.selectEventTypeDropDown();
         analyticPage.selectEventTypeOption("Device powered on");
         analyticPage.selectSubmitBtn();
+        workersPage.isNotDisplayedProgressBar();
         analyticPage.getAnalyticText(" Device powered on ");
         Assert.assertEquals(analyticPage.analyticText," Device powered on "," Device powered on is not equal");
     }
@@ -132,8 +136,10 @@ public class AnalyticPageTest extends BaseTest{
     public void verifyKpiReportChangeSiteFunctionality() {
         LoginPage loginPage = new LoginPage();
         AnalyticPage analyticPage = new AnalyticPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         analyticPage.selectAnalyticBtn();
+        workersPage.isNotDisplayedProgressBar();
         analyticPage.selectKpiReport();
         analyticPage.getCriticalNumberTextBefore();
         analyticPage.selectSiteDropDown();

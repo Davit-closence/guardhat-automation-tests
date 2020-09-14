@@ -2,6 +2,7 @@ package guardhat_ui.pages.analytics;
 
 import guardhat_ui.general_setup.ui_helper.BasePage;
 import guardhat_ui.general_setup.ui_helper.WaitHelper;
+import guardhat_ui.pages.devices.WorkersPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -144,14 +145,14 @@ public class AnalyticPage extends BasePage {
     public String criticalNumberTextBefore;
 
     public String getCriticalNumberTextBefore() {
-        driverSleep(1000);
+        driverSleep(3000);
         return this.criticalNumberTextBefore = getElementText(criticalEventsNumber);
     }
 
     public String criticalNumberTextAfter;
 
     public String getCriticalNumberTextAfter() {
-        driverSleep(1000);
+        driverSleep(3000);
         return this.criticalNumberTextAfter = getElementText(criticalEventsNumber);
     }
 
@@ -224,6 +225,7 @@ public class AnalyticPage extends BasePage {
     private List<WebElement> eventTypeOptions;
 
     public void selectEventTypeOption(String text) {
+        driverSleep(200);
         for (WebElement eventTypeOption : eventTypeOptions) {
             if (getElementText(eventTypeOption).equals(text)) {
                 click(eventTypeOption);
@@ -240,17 +242,13 @@ public class AnalyticPage extends BasePage {
     }
 
     @FindBys({
-            @FindBy(xpath = "//div[contains(@class, 'eventlist__column c-listview__column')]//text()")
+            @FindBy(xpath = "//div[contains(@class, 'eventlist__column c-listview__column')]")
     })
     private List<WebElement> analyticElementTexts;
 
     public String analyticText;
 
     public String getAnalyticText(String text) {
-        WaitHelper.getWait().waitForElementToBeVisible
-                (By.xpath("//div[@class='uploader-status ng-star-inserted']"));
-        WaitHelper.getWait().waitForElementToBeInVisible
-                (By.xpath("//div[@class='uploader-status ng-star-inserted']"));
         driverSleep(300);
         for (WebElement analyticElementText : analyticElementTexts) {
             if (getElementText(analyticElementText).equals(text)) {

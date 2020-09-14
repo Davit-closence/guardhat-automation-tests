@@ -4,23 +4,28 @@
     <listeners>
         <listener class-name="guardhat_ui.general_setup.listeners.RetryListener"/>
     </listeners>
-    <test name="all-packages" parallel="methods" thread-count="1">
-        <classes>
-            <class name="ui.HomePageTest">
-                <methods>
-                    <include name="verifyHomeActiveBtn"/>
-                </methods>
-            </class>
-            <class name="ui.EventPageTest">
-                <methods>
-                    <include name="verifyEventsResolveBtnFunctionality"/>
-                </methods>
-            </class>
-            <class name="ui.WorkerPageTest">
-                <methods>
-                    <include name="verifyWorkersStopTrackFunctionality"/>
-                </methods>
-            </class>
-        </classes>
+    <test name="all-packages">
+        <packages>
+            <package name=".*" />
+        </packages>
     </test>
+<!--    <test name="all-packages" parallel="methods" thread-count="1">-->
+<!--        <classes>-->
+<!--            <class name="ui.HomePageTest">-->
+<!--                <methods>-->
+<!--                    <include name="verifyHomeActiveBtn"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="ui.EventPageTest">-->
+<!--                <methods>-->
+<!--                    <include name="verifyEventsResolveBtnFunctionality"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="ui.WorkerPageTest">-->
+<!--                <methods>-->
+<!--                    <include name="verifyWorkersStopTrackFunctionality"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
