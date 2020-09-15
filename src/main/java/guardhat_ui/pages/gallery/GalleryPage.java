@@ -28,11 +28,19 @@ public class GalleryPage extends BasePage {
         click(galleryBtn);
     }
 
+    public void driverStop(int time){
+        driverSleep(time);
+    }
+
     @FindBy(xpath = "//div[@type='reload']")
     private WebElement reloadBtn;
 
     public void selectReloadBtn() {
         click(reloadBtn);
+    }
+
+    public boolean isDisplayedReloadBtn(){
+        return isDisplayed(reloadBtn);
     }
 
     @FindBy(xpath = "//mat-progress-bar[@role='progressbar']")

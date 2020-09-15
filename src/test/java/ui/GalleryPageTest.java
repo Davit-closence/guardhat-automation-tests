@@ -10,13 +10,14 @@ import org.testng.annotations.Test;
 public class GalleryPageTest extends BaseTest {
 
 
-
     @Test
     public void verifyGalleryReloadBtn() {
         GalleryPage galleryPage = new GalleryPage();
         LoginPage loginPage = new LoginPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
+        workersPage.isNotDisplayedProgressBar();
         galleryPage.selectReloadBtn();
         Assert.assertTrue(galleryPage.isDisplayedProgressBarElement(), "Progress bar is nor displayed");
     }
@@ -28,11 +29,11 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("image");
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         galleryPage.getMediaFileNumberTextAfter();
         Assert.assertNotEquals(galleryPage.mediaFileNumberTextBefore, galleryPage.mediaFileNumberTextAfter, "The number are equal");
     }
@@ -44,10 +45,11 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("audio");
+        workersPage.isNotDisplayedProgressBar();
         galleryPage.getMediaFileNumberTextAfter();
         Assert.assertNotEquals(galleryPage.mediaFileNumberTextBefore, galleryPage.mediaFileNumberTextAfter, "The number are equal");
     }
@@ -59,11 +61,11 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("video");
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         galleryPage.getMediaFileNumberTextAfter();
         Assert.assertNotEquals(galleryPage.mediaFileNumberTextBefore, galleryPage.mediaFileNumberTextAfter, "The number are equal");
     }
@@ -75,7 +77,7 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        galleryPage.driverStop(3000);
         galleryPage.selectFirstFile();
         galleryPage.selectCloseBtn();
         Assert.assertTrue(galleryPage.isNotDisplayedSelectedMediaSection(), "Section is displayed");
@@ -89,7 +91,7 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectFirstFile();
         galleryPage.selectDeleteBtn();
@@ -110,15 +112,15 @@ public class GalleryPageTest extends BaseTest {
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
         galleryPage.selectMediaDropDown();
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        galleryPage.driverStop(3000);
         galleryPage.selectMediaOption("image");
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         galleryPage.selectFirstFile();
         Assert.assertTrue(galleryPage.isDisplayedUserProfileImage(), "User image is not displayed");
         Assert.assertTrue(galleryPage.isDisplayedDeviceBatteryElement(), "Device battery element is not displayed");
         Assert.assertTrue(galleryPage.isDisplayedDevicePercentage(), "Device Percentage element is not displayed");
-        Assert.assertTrue(galleryPage.isDisplayedPanelTitle(),"Panel title is not displayed");
-        Assert.assertTrue(galleryPage.isDisplayedMiniMap(),"Mini map is not displayed");
+        Assert.assertTrue(galleryPage.isDisplayedPanelTitle(), "Panel title is not displayed");
+        Assert.assertTrue(galleryPage.isDisplayedMiniMap(), "Mini map is not displayed");
     }
 
     // SCC-386
@@ -129,10 +131,10 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        galleryPage.driverStop(3000);
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("image");
-        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         galleryPage.selectFirstFile();
         Assert.assertTrue(galleryPage.isDisplayedRelatedFile(), "Related file is not displayed");
     }
