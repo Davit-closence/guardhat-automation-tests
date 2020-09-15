@@ -1,6 +1,7 @@
 package ui;
 
 import guardhat_ui.general_setup.ui_helper.BasePage;
+import guardhat_ui.pages.devices.WorkersPage;
 import guardhat_ui.pages.home_login.LoginPage;
 import guardhat_ui.pages.events.EventPage;
 import org.testng.Assert;
@@ -27,8 +28,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsResolveBtnFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("critical");
         eventPage.selectEventIcon();
@@ -42,8 +45,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsLastFiveEvents() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventIcon();
         Assert.assertTrue(eventPage.isDisplayedLastFiveText(),"Last five event text is not displayed");
     }
@@ -53,8 +58,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsPostCommentsFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("critical");
         eventPage.selectEventIcon();
@@ -71,8 +78,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsCriticalNonCriticalColors() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("noncritical");
         eventPage.getFirstEventNonCriticalColor();
@@ -89,8 +98,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsDeselectFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventIcon();
         Assert.assertTrue(eventPage.isDisplayedLeftPanel(), "Left panel is not displayed");
         eventPage.selectEventIcon();
@@ -102,8 +113,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsRefreshBrowserFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventIcon();
         Assert.assertTrue(eventPage.isDisplayedLeftPanel(), "Left panel is not displayed");
         eventPage.refreshBrowser();
@@ -115,8 +128,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsCriticalOptionFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("critical");
         Assert.assertTrue(eventPage.isDisplayedSocialDistanceIcon(),"Social distance icon is not displayed");
@@ -126,8 +141,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsNonCriticalOptionFunctionality() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("noncritical");
         Assert.assertTrue(eventPage.isDisplayedDeviceInformationIcon(),"Device information icon is not displayed");
@@ -140,8 +157,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsPostCommentBeforeResolve() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("critical");
         eventPage.selectEventIcon();
@@ -157,8 +176,10 @@ public class EventPageTest extends BaseTest {
     public void verifyEventsNonCriticalGeneralElements() {
         LoginPage loginPage = new LoginPage();
         EventPage eventPage = new EventPage();
+        WorkersPage workersPage = new WorkersPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         eventPage.selectEventBtn();
+        workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("noncritical");
         Assert.assertTrue(eventPage.isDisplayedDeviceInformationIcon(),"Device information icon is not displayed");

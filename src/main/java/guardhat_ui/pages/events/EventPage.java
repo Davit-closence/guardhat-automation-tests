@@ -128,6 +128,8 @@ public class EventPage extends BasePage {
 
     public void selectSaveCommentsBtn() {
         click(saveCommentsBtn);
+        WaitHelper.getWait().waitForElementToBeVisible
+                (By.xpath("//button[text()=' Post comment ']"));
     }
 
     @FindBy(xpath = "(//div[@class='c-media__meta text--small text--meta']//span)[1]")
@@ -136,7 +138,7 @@ public class EventPage extends BasePage {
     public String commentsValueBefore;
 
     public String getCommentsValueBefore() {
-        driverSleep(500);
+        driverSleep(2000);
         return this.commentsValueBefore = getElementText(beforeCommentsText);
     }
 

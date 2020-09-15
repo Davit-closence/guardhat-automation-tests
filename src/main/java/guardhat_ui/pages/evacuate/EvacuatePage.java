@@ -74,6 +74,7 @@ public class EvacuatePage extends BasePage {
     public void selectSiteDropDown(){
         WaitHelper.getWait().waitForElementToBeVisible
                 (By.xpath("//div[@class='cdk-overlay-pane']"));
+        driverSleep(5000);
         click(siteDropDown);
     }
 
@@ -99,6 +100,7 @@ public class EvacuatePage extends BasePage {
     private WebElement buildingDropDown;
 
     public void selectBuildingDropDown(){
+        driverSleep(3000);
         click(buildingDropDown);
     }
 
@@ -106,6 +108,7 @@ public class EvacuatePage extends BasePage {
     private WebElement floorsDropDown;
 
     public void selectFloorsDropDown(){
+        driverSleep(3000);
         click(floorsDropDown);
     }
 

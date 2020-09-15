@@ -54,7 +54,7 @@ public class BeaconManagerPage extends BasePage {
     private WebElement typeDropDownArrow;
 
     public void selectTypeDropDown() {
-        driverSleep(4000);
+        driverSleep(4500);
 //        WaitHelper.getWait().waitForElementToBeClickable
 //                (By.cssSelector(".mat-select-trigger .mat-select-arrow-wrapper"));
         click(typeDropDown);
