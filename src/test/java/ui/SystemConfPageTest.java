@@ -23,7 +23,7 @@ public class SystemConfPageTest extends BaseTest {
         systemConfPage.getGPSNumber();
         Assert.assertEquals(systemConfPage.GPSNumber,"190","GPS is not equal");
         systemConfPage.selectSaveBtn();
-        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage_1(),"Message is not displayed");
         systemConfPage.reloadPage();
         systemConfPage.getUWBNumber();
         systemConfPage.getGPSNumber();
@@ -54,7 +54,7 @@ public class SystemConfPageTest extends BaseTest {
         Assert.assertEquals(systemConfPage.userTrackerCheckboxAttribute,systemConfPage.ngDirty,"Check uncheck attribute is not equal");
         systemConfPage.selectUserTrackerCheckbox();
         systemConfPage.selectSaveBtn();
-        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage_1(),"Message is not displayed");
     }
 
     @Test
@@ -67,12 +67,12 @@ public class SystemConfPageTest extends BaseTest {
         systemConfPage.selectUserManagerOption();
         systemConfPage.selectDeviceStyleCheckbox();
         systemConfPage.selectSaveBtn();
-        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage_1(),"Message is not displayed");
         systemConfPage.getDeviceStyleCheckboxAttribute();
         Assert.assertEquals(systemConfPage.deviceStyleCheckboxAttribute,systemConfPage.ngDirty,"Check uncheck attribute is not equal");
         systemConfPage.selectDeviceStyleCheckbox();
         systemConfPage.selectSaveBtn();
-        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage_1(),"Message is not displayed");
     }
 
     @Test
@@ -85,11 +85,11 @@ public class SystemConfPageTest extends BaseTest {
         systemConfPage.selectUserManagerOption();
         systemConfPage.selectShowInfoMessagesCheckbox();
         systemConfPage.selectSaveBtn();
-        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage_1(),"Message is not displayed");
         systemConfPage.getShowInfoMessagesCheckboxAttribute();
         Assert.assertEquals(systemConfPage.showInfoMessagesCheckboxAttribute,systemConfPage.ngDirty,"Check uncheck attribute is not equal");
         systemConfPage.selectShowInfoMessagesCheckbox();
         systemConfPage.selectSaveBtn();
-        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage_1(),"Message is not displayed");
     }
 }

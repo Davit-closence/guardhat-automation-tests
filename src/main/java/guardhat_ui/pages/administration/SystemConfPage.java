@@ -1,6 +1,8 @@
 package guardhat_ui.pages.administration;
 
 import guardhat_ui.general_setup.ui_helper.BasePage;
+import guardhat_ui.general_setup.ui_helper.WaitHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -67,7 +69,9 @@ public class SystemConfPage extends BasePage {
     private WebElement saveBtn;
 
     public void selectSaveBtn() {
-        driverSleep(900);
+        WaitHelper.getWait().waitForElementToBeVisible
+                (By.xpath("(//div[@class='mat-select-value'])[2]"));
+        driverSleep(2000);
         click(saveBtn);
     }
 
@@ -78,10 +82,17 @@ public class SystemConfPage extends BasePage {
         return isDisplayed(savedReportMessage);
     }
 
+
     public void reloadPage() {
         driver.navigate().refresh();
     }
 
+    @FindBy(xpath = "//p[contains(text(),' Successfully saved reports for user. ')]")
+    private WebElement savedReportMessage_1;
+
+    public boolean isDisplayedSavedReportMessage_1() {
+        return isDisplayed(savedReportMessage_1);
+    }
 
     @FindBy(xpath = "//input[@formcontrolname='enableUserTracker']")
     private WebElement userTrackerCheckbox;
