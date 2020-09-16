@@ -46,14 +46,14 @@ public class BaseTest implements IHookable {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void createJiraTicketFailCase(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            JiraTicket.createIssueJira(result, JiraTicket.JIRA_URL, JiraTicket.KEY,
-                    "[FAILED] " + result.getMethod().getMethodName(),
-                    JiraTicket.getCURRENT_DATE_TIME() + "   " + String.valueOf(result.getThrowable()),
-                    driver.getCurrentUrl(), JiraTicket.ISSUE_TYPE_BUG);
-        }
-    }
+//    @AfterMethod(alwaysRun = true)
+//    public void createJiraTicketFailCase(ITestResult result) {
+//        if (ITestResult.FAILURE == result.getStatus()) {
+//            JiraTicket.createIssueJira(result, JiraTicket.JIRA_URL, JiraTicket.KEY,
+//                    "[FAILED] " + result.getMethod().getMethodName(),
+//                    JiraTicket.getCURRENT_DATE_TIME() + "   " + String.valueOf(result.getThrowable()),
+//                    driver.getCurrentUrl(), JiraTicket.ISSUE_TYPE_BUG);
+//        }
+//    }
 
 }
