@@ -46,7 +46,7 @@ public class BaseTest implements IHookable {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void createJiraTicketFailCase(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             JiraTicket.createIssueJira(result, JiraTicket.JIRA_URL, JiraTicket.KEY,
