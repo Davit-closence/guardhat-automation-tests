@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="guardhat_ui.general_setup.listeners.RetryListener"/>
     </listeners>
-    <test name="all-packages">
+    <test name="all-packages" parallel="methods" thread-count="1">
         <packages>
             <package name=".*" />
         </packages>

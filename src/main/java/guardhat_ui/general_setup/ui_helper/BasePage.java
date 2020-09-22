@@ -18,9 +18,9 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
 
     public static final String IMAGE_PATH = "";
     public static final String VIDEO_PATH = "";
-    public static final String BASE_UI_URL = "https://ddd2.guardhat.io";
-    public static final String USERNAME = "davit";
-    public static final String PASSWORD = "guardhat2020";
+    public static final String BASE_UI_URL = "https://closence-1.guardhat.net";   // https://ddd2.guardhat.io
+    public static final String USERNAME = "sccadmin";                             // davit
+    public static final String PASSWORD = "KyraSccAdminPassword";                 // guardhat2020
 
     public BasePage() {
         this.driver = DriverHelper.get().getDriver();

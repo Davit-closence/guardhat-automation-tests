@@ -34,7 +34,7 @@ public class EventPageTest extends BaseTest {
         workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("critical");
-        eventPage.selectEventIcon();
+        eventPage.selectSosAlarmEvent();
         eventPage.selectResolveBtn();
         eventPage.selectConfirmPopupBtn();
         Assert.assertTrue(eventPage.isDisplayedResolvedElement(), "Resolved element is not displayed");
@@ -163,7 +163,7 @@ public class EventPageTest extends BaseTest {
         workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("critical");
-        eventPage.selectEventIcon();
+        eventPage.selectSosAlarmEvent();
         eventPage.selectResolveBtn();
         eventPage.fillCommentsFieldPopup();
         eventPage.selectConfirmPopupBtn();

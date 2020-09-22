@@ -56,6 +56,13 @@ public class EventPage extends BasePage {
         click(eventIcon);
     }
 
+    @FindBy(xpath = "(//*[text()=' SOS alarm '])[1]")
+    private WebElement sosAlarmEvent;
+
+    public void selectSosAlarmEvent(){
+        click(sosAlarmEvent);
+    }
+
     @FindBy(xpath = "//a[text()=' Close ']")
     private WebElement closeBtn;
 

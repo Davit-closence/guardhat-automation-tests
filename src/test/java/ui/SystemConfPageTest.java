@@ -49,7 +49,7 @@ public class SystemConfPageTest extends BaseTest {
         systemConfPage.selectUserManagerOption();
         systemConfPage.selectUserTrackerCheckbox();
         systemConfPage.selectSaveBtn();
-        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage(),"Message is not displayed");
+        Assert.assertTrue(systemConfPage.isDisplayedSavedReportMessage_1(),"Message is not displayed");
         systemConfPage.getUserTrackerCheckboxAttribute();
         Assert.assertEquals(systemConfPage.userTrackerCheckboxAttribute,systemConfPage.ngDirty,"Check uncheck attribute is not equal");
         systemConfPage.selectUserTrackerCheckbox();
