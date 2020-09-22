@@ -2,6 +2,7 @@ package guardhat_ui.pages.home_login;
 
 import guardhat_ui.general_setup.ui_helper.BasePage;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -70,11 +71,20 @@ public class LoginPage extends BasePage {
         return isDisplayed(loginBtn);
     }
 
+    public void checkOverrideBtn() {
+        driverSleep(800);
+        try {
+            overrideBtn.isDisplayed();
+            click(overrideBtn);
+        } catch (NoSuchElementException e) {
+            isDisplayedLogoutBtn();
+        }
+    }
+
     public void loginGuard(String username, String password) {
         fillUserNameField(username);
         fillPasswordField(password);
         selectLoginBtn();
-        selectOverrideBtn();
-        isDisplayedLogoutBtn();
+        checkOverrideBtn();
     }
 }

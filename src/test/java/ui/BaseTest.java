@@ -1,6 +1,5 @@
 package ui;
 
-import guardhat_ui.general_setup.jira.JiraTicket;
 import guardhat_ui.general_setup.ui_helper.DriverHelper;
 import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
