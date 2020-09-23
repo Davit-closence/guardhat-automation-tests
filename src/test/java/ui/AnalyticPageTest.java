@@ -143,7 +143,7 @@ public class AnalyticPageTest extends BaseTest{
         analyticPage.selectKpiReport();
         analyticPage.getCriticalNumberTextBefore();
         analyticPage.selectSiteDropDown();
-        analyticPage.selectSiteOption("CAT_Ranch_2");
+        analyticPage.selectSiteOption("Arm1");
         analyticPage.selectSubmitBtn();
         analyticPage.getCriticalNumberTextAfter();
         Assert.assertNotEquals(analyticPage.criticalNumberTextBefore,analyticPage.criticalNumberTextAfter,"The critical number is equal");

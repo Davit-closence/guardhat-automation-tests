@@ -187,11 +187,25 @@ public class EventPage extends BasePage {
         return isDisplayed(socialDistanceIcon);
     }
 
+    @FindBy(xpath = "(//*[@class='gh-icon icon-EX000'])[1]")
+    private WebElement sosAlarmIcon;
+
+    public boolean isDisplayedSosAlarmIcon(){
+        return isDisplayed(sosAlarmIcon);
+    }
+
     @FindBy(xpath = "(//*[@class='gh-icon icon-EG015'])[1]")
     private WebElement deviceInformationIcon;
 
     public boolean isDisplayedDeviceInformationIcon() {
         return isDisplayed(deviceInformationIcon);
+    }
+
+    @FindBy(xpath = "(//*[@class='gh-icon icon-EG000'])[1]")
+    private WebElement devicePoweredOnIcon;
+
+    public boolean isDisplayedDevicePoweredOnIcon(){
+        return isDisplayed(devicePoweredOnIcon);
     }
 
     @FindBy(xpath = "//textarea")

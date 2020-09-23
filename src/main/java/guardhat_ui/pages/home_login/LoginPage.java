@@ -64,6 +64,7 @@ public class LoginPage extends BasePage {
     }
 
     public void selectLogoutBtn() {
+        driverSleep(1500);
         click(logoutBtn);
     }
 

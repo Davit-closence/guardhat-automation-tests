@@ -61,7 +61,7 @@ public class LoginTest extends BaseTest {
         loginPage.fillUserNameField(BasePage.USERNAME);  // GoogleSheetData.setGoogleSheetData(0)
         loginPage.fillPasswordField(BasePage.PASSWORD);  // GoogleSheetData.setGoogleSheetData(1)
         loginPage.selectLoginBtn();
-        loginPage.selectOverrideBtn();
+        loginPage.checkOverrideBtn();
         Assert.assertTrue(loginPage.isDisplayedLogoutBtn(), "Logout btn is not displayed");
         loginPage.selectLogoutBtn();
         Assert.assertTrue(loginPage.isDisplayedLoginBtn(), "Login btn is not displayed");

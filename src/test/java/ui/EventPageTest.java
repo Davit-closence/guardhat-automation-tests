@@ -134,7 +134,7 @@ public class EventPageTest extends BaseTest {
         workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("critical");
-        Assert.assertTrue(eventPage.isDisplayedSocialDistanceIcon(),"Social distance icon is not displayed");
+        Assert.assertTrue(eventPage.isDisplayedSosAlarmIcon(),"Sos alarm icon is not displayed");
     }
 
     @Test
@@ -147,7 +147,7 @@ public class EventPageTest extends BaseTest {
         workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("noncritical");
-        Assert.assertTrue(eventPage.isDisplayedDeviceInformationIcon(),"Device information icon is not displayed");
+        Assert.assertTrue(eventPage.isDisplayedDevicePoweredOnIcon(),"Device powered on icon is not displayed");
     }
     // SCC-265 $$END$$$
 
@@ -182,7 +182,7 @@ public class EventPageTest extends BaseTest {
         workersPage.isNotDisplayedProgressBar();
         eventPage.selectEventStatusDropDown();
         eventPage.selectEventStatusOption("noncritical");
-        Assert.assertTrue(eventPage.isDisplayedDeviceInformationIcon(),"Device information icon is not displayed");
+        Assert.assertTrue(eventPage.isDisplayedDevicePoweredOnIcon(),"Device information icon is not displayed");
         eventPage.selectEventElement("Device powered on");
         eventPage.getHeaderTitleText();
         Assert.assertEquals(eventPage.headerTitleText,"Device powered on","Header text is not equal");
