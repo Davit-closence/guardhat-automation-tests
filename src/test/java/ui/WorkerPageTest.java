@@ -204,7 +204,6 @@ public class WorkerPageTest extends BaseTest {
         workersPage.selectReloadBtn();
         Assert.assertTrue(workersPage.isNotDisplayedProgressBar(),"Progress bar is displayed");
         workersPage.getDeviceCountBeforeRefresh();
-        System.out.println(workersPage.deviceCountBeforeRefresh);
         Assert.assertEquals(workersPage.deviceCountAfterRefresh,workersPage.deviceCountBeforeRefresh,"Device count is not equal");
     }
 

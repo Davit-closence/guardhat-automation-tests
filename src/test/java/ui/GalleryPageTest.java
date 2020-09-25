@@ -29,7 +29,7 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        galleryPage.driverStop(3000);
+//        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("image");
@@ -45,11 +45,11 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        galleryPage.driverStop(3000);
+//        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("audio");
-        workersPage.isNotDisplayedProgressBar();
+        Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         galleryPage.getMediaFileNumberTextAfter();
         Assert.assertNotEquals(galleryPage.mediaFileNumberTextBefore, galleryPage.mediaFileNumberTextAfter, "The number are equal");
     }
@@ -61,7 +61,7 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        galleryPage.driverStop(3000);
+//        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("video");
@@ -77,7 +77,7 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        galleryPage.driverStop(3000);
+//        galleryPage.driverStop(3000);
         galleryPage.selectFirstFile();
         galleryPage.selectCloseBtn();
         Assert.assertTrue(galleryPage.isNotDisplayedSelectedMediaSection(), "Section is displayed");
@@ -91,7 +91,7 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        galleryPage.driverStop(3000);
+//        galleryPage.driverStop(3000);
         galleryPage.getMediaFileNumberTextBefore();
         galleryPage.selectFirstFile();
         galleryPage.selectDeleteBtn();
@@ -112,7 +112,7 @@ public class GalleryPageTest extends BaseTest {
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
         galleryPage.selectMediaDropDown();
-        galleryPage.driverStop(3000);
+//        galleryPage.driverStop(3000);
         galleryPage.selectMediaOption("image");
         Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
         galleryPage.selectFirstFile();
@@ -131,7 +131,7 @@ public class GalleryPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.loginGuard(BasePage.USERNAME, BasePage.PASSWORD);
         galleryPage.selectGalleryBtn();
-        galleryPage.driverStop(3000);
+//        galleryPage.driverStop(3000);
         galleryPage.selectMediaDropDown();
         galleryPage.selectMediaOption("image");
         Assert.assertTrue(workersPage.isNotDisplayedProgressBar(), "Progress bar is displayed");
